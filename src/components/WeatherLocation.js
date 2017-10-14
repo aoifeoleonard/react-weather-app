@@ -25,40 +25,34 @@ class WeatherLocation extends Component {
     const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
 
     return (
-      <div className='location-main'>
-        <div className='city-name'>
-          <p>{this.props.city}</p>
+      <div className='location-container'>
+
+        <div className="col">
+          <div className="item"><span className="temp-main">{this.props.temp} {this.props.degree}</span></div>
+          <div className="item"><span className="location-name">{this.props.city}</span></div>
         </div>
-        <div className=''>
-          <img src={sun} className="weather-img" alt="sun" />
+        
+        <div className="col">
+          <div className="item"><span className="weather-image"><i className="fa fa-sun-o fa-5x" aria-hidden="true"></i></span></div>
+          <div className="item"><span className="weather-description">Sunny - Some Clouds</span></div>
         </div>
-        <div className='temperature-group'>
-          <div className='temp temp-main'>
-            <p>{this.props.temp} {this.props.degree}</p>
-          </div>
-          <div className='temp-max-min'>
-            <div className='temp temp-sm'>
-              <p>{this.props.temp_min} {this.props.degree}</p>
-            </div>
-            <div className='temp temp-sm'>
-              <p>{this.props.temp_max} {this.props.degree}</p>
-            </div>
-          </div>
+        
+        <div className="col">
+          <div className="item"><span className="temp-sub">{this.props.temp_max} {this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_min} {this.props.degree}</span></div>
         </div>
-         <div className='convert-button'>
+        
+        <div className="col">
+          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">50</span></div>
+          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">North</span></div>
+          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">6am</span></div>
+          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">7pm</span></div>
+        </div>
+
+         <div classNameName='convert-button'>
            <button onClick={this.handleConvert}>Convert</button>
          </div>
-          <div>
-            <div>
-              <label>Comments:</label>
-              <textarea>{this.props.description}</textarea>
-            </div>
-            <div>
-              <button>{submitText}</button>
-              <button>Cancel</button>
-            </div>
-          </div>          
-        </div>
+      </div>
     );
   }
 }
