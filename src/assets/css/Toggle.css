@@ -1,4 +1,16 @@
-img{
+/*img{
 	max-height: 50px;
 	max-width: 50px;
+}*/
+
+
+.add-toggle {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: stretch;
+
+	width: 80%;
+	max-width: 80%;
+
 }

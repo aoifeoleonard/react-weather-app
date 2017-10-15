@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import './assets/css/Dashboard.css';
+import './assets/css/Dashboard.css';
 import WeatherList from './components/WeatherList';
 //import WeatherLocation from './components/WeatherLocation';
 import ToggleAddLocation from './components/ToggleAddLocation';
@@ -11,7 +11,7 @@ class WeatherDashboard extends Component {
 
 	state = {
 		locations: [],
-		isOpen: null,
+		//isOpen: null,
 	 };
 
 	componentDidMount = () => {
@@ -25,7 +25,7 @@ class WeatherDashboard extends Component {
 
 		this.setState({ 
 			locations: Weather.locations,
-			isOpen: false,
+			// isOpen: false,
 		})
 	}
 
@@ -77,24 +77,17 @@ class WeatherDashboard extends Component {
 		console.log('set state', tempObject)
 	}
 
-	handleToggleClick = (isOpen) => {
-		// didn't make a copy???
-		this.setState({
-			isOpen: !isOpen
-		})
-	}
-
-  
   render() {
     return (
     	<div className='container'>
     		<WeatherList 
     			locations = {this.state.locations}
-    			onConversion = {this.conversion} />
-    		<ToggleAddLocation 
-    			isOpen={this.state.isOpen}
-    			onClickToggle={this.handleToggleClick}
+    			onConversion = {this.conversion} 
     		/>
+    		
+    		<div className="toggle-location">
+	    		<ToggleAddLocation />
+	    	</div>
     	</div>
       )
   }

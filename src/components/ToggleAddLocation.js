@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import './../assets/css/Toggle.css';
-import add from './../assets/images/plus.jpg';
 import AddLocationForm from './AddLocationForm';
+
 
 class ToggleAddLocation extends Component {
 
+  state = {
+    isOpen: false
+  };
+
   handleToggle = () => {
-    this.props.onClickToggle(this.props.isOpen);
-  }
+    let isOpen = this.state.isOpen; // any other way?
+    this.setState({ 
+      isOpen: !isOpen
+    });
+  };
   
   render() {
-      if(this.props.isOpen){
+      if(this.state.isOpen){
         return <AddLocationForm
-                  isOpen={this.props.isOpen}
-                  onCancel={this.props.onClickToggle} />
+                  //isOpen={this.state.isOpen}
+                  onCancel={this.handleToggle} />
       } else {
         return (
-          <div>
-            <button>
-              <img src={add} className="add-icon" alt="add" onClick={this.handleToggle} />
+          <div className="add-toggle">
+            <button onClick={this.handleToggle}>
+              <i class="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
             </button>
           </div>
         ) 
