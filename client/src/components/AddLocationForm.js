@@ -17,15 +17,28 @@ class AddLocationForm extends Component {
 
      this.setState({
         location: '' // leave blank??
-      })
+      });
 
+     let inputNode = document.getElementById('add-location-input');
+     let autoComplete = new window.google.maps.places.Autocomplete(inputNode);
+
+
+     autoComplete.addListener('place_changed', () => {
+        let place = autoComplete.getPlace();
+        let placeId = place.id;
+
+        //this.handleLocationChange(place)
+
+         this.setState({ location: place.name })
+
+      })
     }
 
-  handleLocationChange = (e) => {
+  // handleLocationChange = (e) => {
 
-    this.setState({ location: e.target.value })
+  //   this.setState({ location: e.target.value })
       
-  }
+  // }
 
   handleAddNewLocation = () => {
 
@@ -40,7 +53,7 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' className="search-location" placeholder="Please enter location" onChange={this.handleLocationChange} />
+        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location"/>
         <div className="add-cancel">
           <button onClick={this.handleAddNewLocation}>
             <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
@@ -50,8 +63,12 @@ class AddLocationForm extends Component {
           </button>
         </div>
       </div>
+
     )
   }
 }
 
 export default AddLocationForm;
+
+
+// onChange={this.handleLocationChange} 

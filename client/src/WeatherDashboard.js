@@ -109,14 +109,14 @@ class WeatherDashboard extends Component {
 		   }
 
 		   this.setState({
-		   		locations: this.state.locations.concat(newLocationObject)
+		   		locations: this.state.locations.concat(newLocationObject) 
 		   })
 	}
 
 	removeLocation = (city) => {
 
 		this.setState({
-			locations: this.state.locations.filter( loc => loc.city != city )
+			locations: this.state.locations.filter( loc => loc.city !== city )
 		})
 
 	}
