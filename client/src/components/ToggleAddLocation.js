@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './../assets/css/Toggle.css';
+import './../assets/css/toggleAddLocationStyle.css';
 import AddLocationForm from './AddLocationForm';
 
 

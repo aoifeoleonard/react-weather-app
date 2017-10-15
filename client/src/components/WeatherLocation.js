@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/WeatherLocation.css';
-// import sun from './../assets/images/sunny.jpg';
+import './../assets/css/weatherLocationStyle.css';
 
 class WeatherLocation extends Component {
 

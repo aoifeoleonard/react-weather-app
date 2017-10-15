@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import 'assets/css/Dashboard.css';
+import 'assets/css/dashboardStyle.css';
 import WeatherList from 'components/WeatherList';
-//import WeatherLocation from './components/WeatherLocation';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 import weather from 'models/Weather';
 

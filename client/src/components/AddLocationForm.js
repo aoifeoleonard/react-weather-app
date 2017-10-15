@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/AddLocationForm.css';
-
-// import cancel from './../assets/images/x-cancel.jpg';
-// <img src={cancel} alt='' onClick={this.handleCancel} />
+import './../assets/css/addLocationFormStyle.css';
 
 class AddLocationForm extends Component {
 
