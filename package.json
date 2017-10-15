@@ -1,16 +1,25 @@
 {
-  "name": "weather-app",
-  "version": "0.1.0",
+  "name": "weather-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "private": true,
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.13"
+    "cors": "^2.8.4",
+    "express": "4.13.3",
+    "request": "^2.83.0",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "concurrently": "3.1.0",
+    "eslint": "3.15.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "node start-client.js",
+    "lint": "eslint ."
   }
 }
