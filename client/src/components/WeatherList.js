@@ -30,6 +30,7 @@ class WeatherList extends React.PureComponent{
 					temp_min = {loc.temps.temp_min}
 					temp_max = {loc.temps.temp_max}
 					onConvert = {this.props.onConversion}
+					onRemove = {this.props.onRemove}
 					addDescription = {loc.addDescription}
 					description = {loc.description_user}
 					degree = {loc.degree}

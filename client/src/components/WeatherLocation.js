@@ -27,6 +27,10 @@ class WeatherLocation extends Component {
           this.props.onConvert(temps, this.props.degree, this.props.city);
         }
 
+        handleRemove = () => {
+          this.props.onRemove(this.props.city)
+        }
+
     
   render() {
 
@@ -57,9 +61,15 @@ class WeatherLocation extends Component {
           <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">7pm</span></div>
         </div>
 
-         <div classNameName='convert-button'>
+        <div className="col">
+         <div className='convert-button'>
            <button onClick={this.handleConvert}>Convert</button>
          </div>
+         <div className='remove-button'>
+           <button onClick={this.handleRemove}>Remove</button>
+         </div>
+        </div>
+
       </div>
     );
   }

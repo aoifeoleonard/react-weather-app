@@ -5,12 +5,32 @@ import './../assets/css/addLocationFormStyle.css';
 class AddLocationForm extends Component {
 
   static propTypes = {
-      onCancel: PropTypes.func
+      onNewLocation: PropTypes.func.requrired,
+      onCancel: PropTypes.func.required
+    };
+
+    state = {
+      location: ''
+    };
+
+  componentDidMount = () => {
+
+     this.setState({
+        location: '' // leave blank??
+      })
+
     }
 
+  handleLocationChange = (e) => {
 
-  addNewLocation = () => {
-    
+    this.setState({ location: e.target.value })
+      
+  }
+
+  handleAddNewLocation = () => {
+
+      this.props.onNewLocation(this.state.location);
+      this.handleCancel();
   }
 
   handleCancel = () => {
@@ -20,13 +40,13 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' className="search-location" />
+        <input type='text' className="search-location" placeholder="Please enter location" onChange={this.handleLocationChange} />
         <div className="add-cancel">
-          <button onClick={this.addNewLocation}>
-            <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+          <button onClick={this.handleAddNewLocation}>
+            <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
           </button>
           <button onClick={this.handleCancel}>
-            <i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+            <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
           </button>
         </div>
       </div>

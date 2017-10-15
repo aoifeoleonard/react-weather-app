@@ -27,8 +27,8 @@ i {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: stretch;
-	width: 23%;
-	max-width: 23%;
+	width: auto; /*19%;*/
+	max-width: 19%;
 
 	/*text-align: center;*/
 }

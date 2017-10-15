@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './../assets/css/toggleAddLocationStyle.css';
 import AddLocationForm from './AddLocationForm';
 
 
 class ToggleAddLocation extends Component {
+
+  static propTypes = {
+    onAddNewLocation: PropTypes.func.required
+  }
 
   state = {
     addLocationOpen: false
@@ -19,13 +24,13 @@ class ToggleAddLocation extends Component {
   render() {
       if(this.state.addLocationOpen){
         return <AddLocationForm
-                  //isOpen={this.state.isOpen}
+                  onNewLocation={this.props.onAddNewLocation}
                   onCancel={this.handleToggle} />
       } else {
         return (
           <div className="add-toggle">
             <button onClick={this.handleToggle}>
-              <i class="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
+              <i className="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
             </button>
           </div>
         ) 
