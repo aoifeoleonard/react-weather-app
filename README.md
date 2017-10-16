@@ -1,10 +1,6 @@
 # react-weather-app
 
-API keys have been removed
-required in
-server.js
-line 22
-line 33
-
-index.html
-line 25
+- API keys have been removed
+- server.js @ line 22, line 33
+- index.html @ line 25
+- to run do npm install in both root and client folders
