@@ -4,8 +4,10 @@ i {
 }
 
 .location-container {
-	display: flex;
-	flex-flow: row wrap;
+	/*display: flex;*/
+	display: -webkit-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: stretch;
 
@@ -25,9 +27,9 @@ i {
 .col {
 	display: flex;
 	flex-direction: column;
+	flex: 0 1 19%;
 	justify-content: space-around;
 	align-items: stretch;
-	width: auto; /*19%;*/
 	max-width: 19%;
 
 	/*text-align: center;*/

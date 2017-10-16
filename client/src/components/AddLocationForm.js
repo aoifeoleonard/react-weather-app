@@ -25,11 +25,11 @@ class AddLocationForm extends Component {
 
      autoComplete.addListener('place_changed', () => {
         let place = autoComplete.getPlace();
-        let placeId = place.id;
+        let placeId = place.place_id;
 
         //this.handleLocationChange(place)
-
-         this.setState({ location: place.name })
+        console.log('place', place)
+         this.setState({ location: placeId })
 
       })
     }
@@ -53,7 +53,7 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location"/>
+        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autofocus />
         <div className="add-cancel">
           <button onClick={this.handleAddNewLocation}>
             <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>

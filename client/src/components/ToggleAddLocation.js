@@ -33,8 +33,8 @@ class ToggleAddLocation extends Component {
               <i className="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
             </button>
           </div>
-        ) 
-      }
+      )
+    }
   }
 }
 

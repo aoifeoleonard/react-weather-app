@@ -1,4 +1,7 @@
+// Updated
+
 import React, { Component } from 'react';
+import axios from 'axios';
 import 'assets/css/dashboardStyle.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
@@ -10,23 +13,80 @@ class WeatherDashboard extends Component {
 
 	state = {
 		locations: [],
-		//isOpen: null,
-	 };
+		lat: null,
+		long: null
+	};
+		
 
+	 // load data
 	componentDidMount = () => {
 
-		weather.locations.forEach((loc) => {
-			loc.temps.temp = Math.round(loc.temps.temp) - 270;
-			loc.temps.temp_min = Math.round(loc.temps.temp_min) - 270;
-			loc.temps.temp_max = Math.round(loc.temps.temp_max) - 270;
-			loc.degree = 'C';
-		})
+		let lat = this.state.lat || 53.270668;
+		let long = this.state.long || -9.056790;
 
-		this.setState({ 
-			locations: weather.locations
-		})
+		let initialLocation = axios.get('/weather/' + lat + '/' + long)
+			.then((res) => {
+				console.log('weather', res.data);
+				return this.setState({ locations: this.state.locations.concat(res.data)}) // res.data;	
+			})
+			.catch(function (error) {
+				console.log('error', error);
+			});
 	}
 
+	componentDidUpdate = (prevProps, prevState) => {
+
+		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
+		
+		axios.get('/weather/' + this.state.lat + '/' + this.state.long)
+				.then((res) => {
+					console.log('updated weather', res.data);
+					return this.setState({ locations: this.state.locations.concat(res.data), lat: null, long: null })//  res.data;
+				})
+				.catch(function (error) {
+				console.log('error', error);
+			}); 
+		}
+
+	}
+
+	// fetchWeather = (lat, long) => {
+	// 	axios.get('/weather/lat=' + long + '/long=' + lat)
+	// 			.then((res) => {
+	// 			return this.setState({ locations: this.state.locations.concat(res.data)})//res.data;
+	// 			console.log('weather', res.data);
+	// 			})
+	// 			.catch(function (error) {
+	// 			console.log('error', error);
+	// 	}); 
+	// }
+
+	addNewLocation = (id) => {
+		console.log('new location id', id)
+		axios.get('/location/' + id )
+			.then(res => {
+				const data = res.data.result;
+				const latInit = data.geometry.location.lat;
+				const longInit = data.geometry.location.lng; 
+
+				const lat = parseFloat(latInit.toFixed(6));
+				const long = parseFloat(longInit.toFixed(6));
+
+			this.setState({ lat, long });
+		});
+	}
+
+
+	// works fine
+	removeLocation = (city) => {
+
+		this.setState({
+			locations: this.state.locations.filter( loc => loc.name !== city )
+		})
+
+	}
+
+	// works fine
 	conversion = (temps, degree, city) => {	
 
 		let convertTempCalc;
@@ -49,16 +109,16 @@ class WeatherDashboard extends Component {
 
 		const temperatureArray = this.state.locations.map((loc) => {
 		
-			if(loc.city === city){
+			if(loc.name === city){
 				
-				let convertedTempObject = Object.assign({}, loc.temps, {
+				let convertedTempObject = Object.assign({}, loc.main, {
 					temp: updatedTempData[0],
 					temp_max: updatedTempData[1],
 					temp_min: updatedTempData[2]
 				})
 
 				return Object.assign({}, loc, {
-					temps: convertedTempObject,
+					main: convertedTempObject,
 					degree: updatedDegree
 				})
 
@@ -76,68 +136,26 @@ class WeatherDashboard extends Component {
 	}
 
 
-	addNewLocation = (newLocation) => {
-
-		let city = newLocation;
-		let temp = Math.round(Math.random()*100);
-		let temp_min = Math.round(Math.random()*100);
-		let temp_max = Math.round(Math.random()*100);
-
-
-		let newLocationObject = { 
-		      "main":"Rain",
-		      "description":"Raining",
-		      "temps":{  
-		         "temp": temp,
-		         "pressure":1014,
-		         "humidity":72,
-		         "temp_min":temp_min,
-		         "temp_max":temp_max
-		      },
-		      "wind":{  
-		         "speed":7.7,
-		         "deg":140
-		      },
-		      "sys":{  
-		         "sunrise":1506407426,
-		         "sunset":1506450178
-		      },
-		      "city": city,
-		      "addDescription" : true,
-		      "description_user" : "",
-		      "degree": "C"
-		   }
-
-		   this.setState({
-		   		locations: this.state.locations.concat(newLocationObject) 
-		   })
-	}
-
-	removeLocation = (city) => {
-
-		this.setState({
-			locations: this.state.locations.filter( loc => loc.city !== city )
-		})
-
-	}
-
+  // original rendering
   render() {
-    return (
-    	<div className='container'>
-    		<WeatherList 
-    			locations = {this.state.locations}
-    			onConversion = {this.conversion}
-    			onRemove = {this.removeLocation}
-    		/>
-    		
-    		<div className="toggle-location">
-	    		<ToggleAddLocation
-	    			onAddNewLocation={this.addNewLocation} 
+	    return (
+	    	<div className='container'>
+	    		<WeatherList 
+	    			locations = {this.state.locations}
+	    			onConversion = {this.conversion}
+	    			onRemove = {this.removeLocation}
 	    		/>
+	    		
+	    		<div className="toggle-location">
+		    		<ToggleAddLocation
+		    			onAddNewLocation = {this.addNewLocation} 
+		    		/>
+		    	</div>
 	    	</div>
-    	</div>
-      )
-  }
+  	    ) 
+	}
+
 }
 
 export default WeatherDashboard;
+

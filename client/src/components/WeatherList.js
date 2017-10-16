@@ -20,20 +20,25 @@ class WeatherList extends React.PureComponent{
 		this.props.locations.sort((a,b) => 
 			a.city > b.city ? 1 : a.city < b.city ? -1 : 0
 		)
-		
+
+	
 		const weatherComponents = this.props.locations.map((loc) => (
 
+
 				<WeatherLocation
-					city = {loc.city}
-					main = {loc.main}
-					temp = {loc.temps.temp}
-					temp_min = {loc.temps.temp_min}
-					temp_max = {loc.temps.temp_max}
+					id = {loc.id}
+					city = {loc.name}
+					temp = {loc.main.temp}
+					temp_min = {loc.main.temp_min}
+					temp_max = {loc.main.temp_max}
 					onConvert = {this.props.onConversion}
 					onRemove = {this.props.onRemove}
-					addDescription = {loc.addDescription}
-					description = {loc.description_user}
+					description = {loc.weather[0].description}
 					degree = {loc.degree}
+					windSpeed = {loc.wind.speed}
+					sunrise = {loc.sys.sunrise}
+					sunset = {loc.sys.sunset}
+					humidity = {loc.main.humidity}
       			 />
       		));
 

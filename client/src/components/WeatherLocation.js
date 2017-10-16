@@ -34,7 +34,8 @@ class WeatherLocation extends Component {
     
   render() {
 
-    const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
+    //const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
+
 
     return (
       <div className='location-container'>
@@ -46,7 +47,7 @@ class WeatherLocation extends Component {
         
         <div className="col">
           <div className="item"><span className="weather-image"><i className="fa fa-sun-o fa-5x" aria-hidden="true"></i></span></div>
-          <div className="item"><span className="weather-description">Sunny - Some Clouds</span></div>
+          <div className="item"><span className="weather-description">{this.props.description}</span></div>
         </div>
         
         <div className="col">
@@ -55,10 +56,10 @@ class WeatherLocation extends Component {
         </div>
         
         <div className="col">
-          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">50</span></div>
-          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">North</span></div>
-          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">6am</span></div>
-          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">7pm</span></div>
+          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">Windspeed {this.props.windSpeed}</span></div>
+          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">Humididty {this.props.humidity}</span></div>
+          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">{this.props.sunrise}</span></div>
+          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">{this.props.sunset}</span></div>
         </div>
 
         <div className="col">
