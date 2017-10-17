@@ -5,8 +5,8 @@ import './../assets/css/addLocationFormStyle.css';
 class AddLocationForm extends Component {
 
   static propTypes = {
-      onNewLocation: PropTypes.func.requrired,
-      onCancel: PropTypes.func.required
+      onNewLocation: PropTypes.func,
+      onCancel: PropTypes.func
     };
 
     state = {
@@ -53,7 +53,7 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autofocus />
+        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autoFocus />
         <div className="add-cancel">
           <button onClick={this.handleAddNewLocation}>
             <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>

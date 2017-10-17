@@ -41,18 +41,18 @@ class WeatherLocation extends Component {
       <div className='location-container'>
 
         <div className="col">
-          <div className="item"><span className="temp-main">{this.props.temp} {this.props.degree}</span></div>
+          <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.props.degree}</span></div>
           <div className="item"><span className="location-name">{this.props.city}</span></div>
         </div>
         
         <div className="col">
-          <div className="item"><span className="weather-image"><i className="fa fa-sun-o fa-5x" aria-hidden="true"></i></span></div>
+          <div className="item"><span className="weather-image"><img src={this.props.icon} alt="Weather icon" /></span></div>
           <div className="item"><span className="weather-description">{this.props.description}</span></div>
         </div>
         
         <div className="col">
-          <div className="item"><span className="temp-sub">{this.props.temp_max} {this.props.degree}</span></div>
-          <div className="item"><span className="temp-sub">{this.props.temp_min} {this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.props.degree}</span></div>
         </div>
         
         <div className="col">

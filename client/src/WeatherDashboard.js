@@ -5,7 +5,6 @@ import axios from 'axios';
 import 'assets/css/dashboardStyle.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
-import weather from 'models/Weather';
 
 
 class WeatherDashboard extends Component {
@@ -24,10 +23,28 @@ class WeatherDashboard extends Component {
 		let lat = this.state.lat || 53.270668;
 		let long = this.state.long || -9.056790;
 
-		let initialLocation = axios.get('/weather/' + lat + '/' + long)
+		axios.get('/weather/' + lat + '/' + long)
 			.then((res) => {
 				console.log('weather', res.data);
-				return this.setState({ locations: this.state.locations.concat(res.data)}) // res.data;	
+
+				// get weather icon
+				let iconCode = res.data.weather[0].icon;
+				let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+				res.data.icon = iconUrl;
+
+				//set init degree to Celcius
+				res.data.degree = 'C';
+
+				// convert time
+				res.data.sunrise = this.convertDateTime(res.data.sys.sunrise);
+				res.data.sunset = this.convertDateTime(res.data.sys.sunset);
+
+				// convert temp from Kelvin
+				res.data.main.temp = this.convertKelvinToCelcius(res.data.main.temp);
+				res.data.main.temp_min = this.convertKelvinToCelcius(res.data.main.temp_min);
+				res.data.main.temp_max = this.convertKelvinToCelcius(res.data.main.temp_max);
+				
+				return this.setState({ locations: this.state.locations.concat(res.data)}); // res.data;	
 			})
 			.catch(function (error) {
 				console.log('error', error);
@@ -41,13 +58,33 @@ class WeatherDashboard extends Component {
 		axios.get('/weather/' + this.state.lat + '/' + this.state.long)
 				.then((res) => {
 					console.log('updated weather', res.data);
-					return this.setState({ locations: this.state.locations.concat(res.data), lat: null, long: null })//  res.data;
+					res.data.degree = 'C';
+					let iconCode = res.data.weather[0].icon;
+					let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+					res.data.icon = iconUrl;
+					res.data.sunrise = this.convertDateTime(res.data.sys.sunrise);
+					res.data.sunset = this.convertDateTime(res.data.sys.sunset);
+					res.data.main.temp = Math.round(res.data.main.temp) -270;
+					res.data.main.temp_min = Math.round(res.data.main.temp_min) -270;
+					res.data.main.temp_max = Math.round(res.data.main.temp_max) -270;
+					return this.setState({ locations: this.state.locations.concat(res.data), lat: null, long: null });//  res.data;
 				})
 				.catch(function (error) {
 				console.log('error', error);
 			}); 
 		}
 
+	}
+
+	convertDateTime = (timestamp) => {
+		let d = new Date(timestamp*1000);
+		let t = d.toTimeString().split(' ')[0];
+
+		return t;
+	}
+
+	convertKelvinToCelcius = (temp) => {
+		return Math.round(temp) -270;
 	}
 
 	// fetchWeather = (lat, long) => {
