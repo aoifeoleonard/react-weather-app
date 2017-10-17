@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/WeatherLocation.css';
-// import sun from './../assets/images/sunny.jpg';
+import './../assets/css/weatherLocationStyle.css';
 
 class WeatherLocation extends Component {
 
@@ -28,39 +27,50 @@ class WeatherLocation extends Component {
           this.props.onConvert(temps, this.props.degree, this.props.city);
         }
 
+        handleRemove = () => {
+          this.props.onRemove(this.props.city)
+        }
+
     
   render() {
 
-    const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
+    //const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
+
 
     return (
       <div className='location-container'>
 
         <div className="col">
-          <div className="item"><span className="temp-main">{this.props.temp} {this.props.degree}</span></div>
+          <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.props.degree}</span></div>
           <div className="item"><span className="location-name">{this.props.city}</span></div>
         </div>
         
         <div className="col">
-          <div className="item"><span className="weather-image"><i className="fa fa-sun-o fa-5x" aria-hidden="true"></i></span></div>
-          <div className="item"><span className="weather-description">Sunny - Some Clouds</span></div>
+          <div className="item"><span className="weather-image"><img src={this.props.icon} alt="Weather icon" /></span></div>
+          <div className="item"><span className="weather-description">{this.props.description}</span></div>
         </div>
         
         <div className="col">
-          <div className="item"><span className="temp-sub">{this.props.temp_max} {this.props.degree}</span></div>
-          <div className="item"><span className="temp-sub">{this.props.temp_min} {this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.props.degree}</span></div>
         </div>
         
         <div className="col">
-          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">50</span></div>
-          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">North</span></div>
-          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">6am</span></div>
-          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">7pm</span></div>
+          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">Windspeed {this.props.windSpeed}</span></div>
+          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">Humididty {this.props.humidity}</span></div>
+          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">{this.props.sunrise}</span></div>
+          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">{this.props.sunset}</span></div>
         </div>
 
-         <div classNameName='convert-button'>
+        <div className="col">
+         <div className='convert-button'>
            <button onClick={this.handleConvert}>Convert</button>
          </div>
+         <div className='remove-button'>
+           <button onClick={this.handleRemove}>Remove</button>
+         </div>
+        </div>
+
       </div>
     );
   }

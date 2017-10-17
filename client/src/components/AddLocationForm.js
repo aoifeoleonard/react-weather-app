@@ -1,19 +1,49 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/AddLocationForm.css';
-
-// import cancel from './../assets/images/x-cancel.jpg';
-// <img src={cancel} alt='' onClick={this.handleCancel} />
+import './../assets/css/addLocationFormStyle.css';
 
 class AddLocationForm extends Component {
 
   static propTypes = {
+      onNewLocation: PropTypes.func,
       onCancel: PropTypes.func
+    };
+
+    state = {
+      location: ''
+    };
+
+  componentDidMount = () => {
+
+     this.setState({
+        location: '' // leave blank??
+      });
+
+     let inputNode = document.getElementById('add-location-input');
+     let autoComplete = new window.google.maps.places.Autocomplete(inputNode);
+
+
+     autoComplete.addListener('place_changed', () => {
+        let place = autoComplete.getPlace();
+        let placeId = place.place_id;
+
+        //this.handleLocationChange(place)
+        console.log('place', place)
+         this.setState({ location: placeId })
+
+      })
     }
 
+  // handleLocationChange = (e) => {
 
-  addNewLocation = () => {
-    
+  //   this.setState({ location: e.target.value })
+      
+  // }
+
+  handleAddNewLocation = () => {
+
+      this.props.onNewLocation(this.state.location);
+      this.handleCancel();
   }
 
   handleCancel = () => {
@@ -23,18 +53,22 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' className="search-location" />
+        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autoFocus />
         <div className="add-cancel">
-          <button onClick={this.addNewLocation}>
-            <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+          <button onClick={this.handleAddNewLocation}>
+            <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
           </button>
           <button onClick={this.handleCancel}>
-            <i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+            <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
           </button>
         </div>
       </div>
+
     )
   }
 }
 
 export default AddLocationForm;
+
+
+// onChange={this.handleLocationChange} 
