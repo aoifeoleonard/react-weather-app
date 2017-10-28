@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/toggleAddLocationStyle.css';
+import 'assets/css/toggleAddLocationStyle.css';
 import AddLocationForm from './AddLocationForm';
 
 

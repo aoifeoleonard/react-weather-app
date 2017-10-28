@@ -1,5 +1,3 @@
-// Updated
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'assets/css/dashboardStyle.css';
@@ -17,69 +15,55 @@ class WeatherDashboard extends Component {
 	};
 		
 
-	 // load data
 	componentDidMount = () => {
-
 		let lat = this.state.lat || 53.270668;
-		let long = this.state.long || -9.056790;
+		let long = this.state.long ||  -9.056790;
 
-		axios.get('/weather/' + lat + '/' + long)
-			.then((res) => {
-				console.log('weather', res.data);
+		this.getWeatherLocation(lat, long);
 
-				// get weather icon
-				let iconCode = res.data.weather[0].icon;
-				let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-				res.data.icon = iconUrl;
 
-				//set init degree to Celcius
-				res.data.degree = 'C';
-
-				// convert time
-				res.data.sunrise = this.convertDateTime(res.data.sys.sunrise);
-				res.data.sunset = this.convertDateTime(res.data.sys.sunset);
-
-				// convert temp from Kelvin
-				res.data.main.temp = this.convertKelvinToCelcius(res.data.main.temp);
-				res.data.main.temp_min = this.convertKelvinToCelcius(res.data.main.temp_min);
-				res.data.main.temp_max = this.convertKelvinToCelcius(res.data.main.temp_max);
-				
-				return this.setState({ locations: this.state.locations.concat(res.data)}); // res.data;	
-			})
-			.catch(function (error) {
-				console.log('error', error);
-			});
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
 
 		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
-		
-		axios.get('/weather/' + this.state.lat + '/' + this.state.long)
-				.then((res) => {
-					console.log('updated weather', res.data);
-					res.data.degree = 'C';
-					let iconCode = res.data.weather[0].icon;
-					let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-					res.data.icon = iconUrl;
-					res.data.sunrise = this.convertDateTime(res.data.sys.sunrise);
-					res.data.sunset = this.convertDateTime(res.data.sys.sunset);
-					res.data.main.temp = Math.round(res.data.main.temp) -270;
-					res.data.main.temp_min = Math.round(res.data.main.temp_min) -270;
-					res.data.main.temp_max = Math.round(res.data.main.temp_max) -270;
-					return this.setState({ locations: this.state.locations.concat(res.data), lat: null, long: null });//  res.data;
-				})
-				.catch(function (error) {
-				console.log('error', error);
-			}); 
+			this.getWeatherLocation(this.state.lat, this.state.long);
+		 
 		}
 
+	}
+
+	getWeatherLocation = (lat, long) => {
+		axios.get('/weather/' + lat + '/' + long)
+				.then((res) => {
+
+					let data = res.data;
+
+					// retrieve icon for weather
+					let iconCode = data.weather[0].icon;
+					let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+					// create icon object on location object
+					data.icon = iconUrl;
+
+					// format time stamp to hh:mm:ss
+					data.sys.sunrise = this.convertDateTime(data.sys.sunrise);
+					data.sys.sunset = this.convertDateTime(data.sys.sunset);
+
+					// convert init temp to celcius
+					data.main.temp = this.convertKelvinToCelcius(res.data.main.temp);
+					data.main.temp_min =this.convertKelvinToCelcius(res.data.main.temp_min);
+					data.main.temp_max = this.convertKelvinToCelcius(res.data.main.temp_max);
+
+					return this.setState({ locations: this.state.locations.concat(data), lat: null, long: null });//  res.data;
+				})
+				.catch(function (error) {
+				console.log('Error [getWeatherLocation()]', error);
+			});
 	}
 
 	convertDateTime = (timestamp) => {
 		let d = new Date(timestamp*1000);
 		let t = d.toTimeString().split(' ')[0];
-
 		return t;
 	}
 
@@ -87,16 +71,6 @@ class WeatherDashboard extends Component {
 		return Math.round(temp) -270;
 	}
 
-	// fetchWeather = (lat, long) => {
-	// 	axios.get('/weather/lat=' + long + '/long=' + lat)
-	// 			.then((res) => {
-	// 			return this.setState({ locations: this.state.locations.concat(res.data)})//res.data;
-	// 			console.log('weather', res.data);
-	// 			})
-	// 			.catch(function (error) {
-	// 			console.log('error', error);
-	// 	}); 
-	// }
 
 	addNewLocation = (id) => {
 		console.log('new location id', id)
@@ -114,7 +88,6 @@ class WeatherDashboard extends Component {
 	}
 
 
-	// works fine
 	removeLocation = (city) => {
 
 		this.setState({
@@ -123,7 +96,6 @@ class WeatherDashboard extends Component {
 
 	}
 
-	// works fine
 	conversion = (temps, degree, city) => {	
 
 		let convertTempCalc;
@@ -177,17 +149,16 @@ class WeatherDashboard extends Component {
   render() {
 	    return (
 	    	<div className='container'>
-	    		<WeatherList 
-	    			locations = {this.state.locations}
-	    			onConversion = {this.conversion}
-	    			onRemove = {this.removeLocation}
-	    		/>
-	    		
 	    		<div className="toggle-location">
 		    		<ToggleAddLocation
 		    			onAddNewLocation = {this.addNewLocation} 
 		    		/>
 		    	</div>
+	    		<WeatherList 
+	    			locations = {this.state.locations}
+	    			onConversion = {this.conversion}
+	    			onRemove = {this.removeLocation}
+	    		/>
 	    	</div>
   	    ) 
 	}

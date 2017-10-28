@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/addLocationFormStyle.css';
+import 'assets/css/addLocationFormStyle.css';
 
 class AddLocationForm extends Component {
 
@@ -16,7 +16,7 @@ class AddLocationForm extends Component {
   componentDidMount = () => {
 
      this.setState({
-        location: '' // leave blank??
+        location: ''
       });
 
      let inputNode = document.getElementById('add-location-input');
@@ -26,19 +26,10 @@ class AddLocationForm extends Component {
      autoComplete.addListener('place_changed', () => {
         let place = autoComplete.getPlace();
         let placeId = place.place_id;
-
-        //this.handleLocationChange(place)
-        console.log('place', place)
-         this.setState({ location: placeId })
+        this.setState({ location: placeId })
 
       })
-    }
-
-  // handleLocationChange = (e) => {
-
-  //   this.setState({ location: e.target.value })
-      
-  // }
+  }
 
   handleAddNewLocation = () => {
 
@@ -69,6 +60,3 @@ class AddLocationForm extends Component {
 }
 
 export default AddLocationForm;
-
-
-// onChange={this.handleLocationChange} 

@@ -1,47 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../assets/css/weatherLocationStyle.css';
+import 'assets/css/weatherLocationStyle.css';
 
 class WeatherLocation extends Component {
-
-  // constructor(props){
-  //   super(props);
-
-  //   this.handleTempConvert = this.handleTempConvert.bind(this); // bind 'this' to the function
-      
-  // }
 
     static propTypes = {
       temp: PropTypes.number.isRequired,
       temp_max: PropTypes.number.isRequired,
       temp_min: PropTypes.number.isRequired,
-      city: PropTypes.string.isRequired,
-      degree: PropTypes.string.isRequired
+      city: PropTypes.string.isRequired
+    }
+
+    state = {
+      degree: ''
+    }
+
+    componentDidMount = () => {
+      this.setState({ degree: 'C' })
     }
 
 
-        handleConvert = () => {
+    handleConvert = () => {
+      let temps = [this.props.temp, this.props.temp_max, this.props.temp_min];
+      this.props.onConvert(temps, this.state.degree, this.props.city);
+      this.setState({ degree: (this.state.degree === 'C') ? 'F' : 'C' })
+    }
 
-          let temps = [this.props.temp, this.props.temp_max, this.props.temp_min];
-
-          this.props.onConvert(temps, this.props.degree, this.props.city);
-        }
-
-        handleRemove = () => {
-          this.props.onRemove(this.props.city)
-        }
+    handleRemove = () => {
+      this.props.onRemove(this.props.city)
+    }
 
     
   render() {
-
-    //const submitText = this.props.description.length > 0 ? 'Update' : 'Save';
-
-
     return (
       <div className='location-container'>
 
         <div className="col">
-          <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.props.degree}</span></div>
+          <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.state.degree}</span></div>
           <div className="item"><span className="location-name">{this.props.city}</span></div>
         </div>
         
@@ -51,8 +46,8 @@ class WeatherLocation extends Component {
         </div>
         
         <div className="col">
-          <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.props.degree}</span></div>
-          <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.props.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.state.degree}</span></div>
+          <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.state.degree}</span></div>
         </div>
         
         <div className="col">

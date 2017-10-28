@@ -75,4 +75,5 @@ i {
 
 .weather-description {
 	text-align: center;
+	text-transform: capitalize;
 }
