@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'assets/css/weatherLocationStyle.css';
+import 'assets/css/toggle.css';
 
 class WeatherLocation extends Component {
 
@@ -33,7 +34,7 @@ class WeatherLocation extends Component {
     
   render() {
     return (
-      <div className='location-container'>
+      <div className="location-container">
 
         <div className="col">
           <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.state.degree}</span></div>
@@ -58,11 +59,21 @@ class WeatherLocation extends Component {
         </div>
 
         <div className="col">
-         <div className='convert-button'>
-           <button onClick={this.handleConvert}>Convert</button>
-         </div>
+         {/* 
+            <div className='convert-button'>
+           //   <button onClick={this.handleConvert}>Convert</button>
+           // </div>
+          */}
+         <div className="toggle-button">
+            <span className="degree">C</span>
+            <label className="switch">
+              <input type="checkbox" onChange={this.handleConvert}></input>
+              <span className="slider round"></span>
+            </label>
+            <span className="degree">F</span>
+          </div>
          <div className='remove-button'>
-           <button onClick={this.handleRemove}>Remove</button>
+           <button className="remove" onClick={this.handleRemove}>x</button>
          </div>
         </div>
 
