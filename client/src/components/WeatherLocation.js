@@ -64,6 +64,7 @@ class WeatherLocation extends Component {
            //   <button onClick={this.handleConvert}>Convert</button>
            // </div>
           */}
+         
          <div className="toggle-button">
             <span className="degree">C</span>
             <label className="switch">
@@ -72,11 +73,12 @@ class WeatherLocation extends Component {
             </label>
             <span className="degree">F</span>
           </div>
-         <div className='remove-button'>
-           <button className="remove" onClick={this.handleRemove}>x</button>
+         
+         <div className="remove-button">
+           <span className="remove" onClick={this.handleRemove}>x</span>
          </div>
+        
         </div>
-
       </div>
     );
   }
