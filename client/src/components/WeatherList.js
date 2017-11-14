@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
+import 'assets/css/weatherListStyle.css';
 
 //Since this is a list it's better for performance to use PureComponent,
 //this means react only does a reconciliation if state or props changed
@@ -32,8 +33,8 @@ class WeatherList extends React.PureComponent{
 					description = {loc.weather[0].description}
 					windSpeed = {loc.wind.speed}
 					humidity = {loc.main.humidity}
-					sunrise = {loc.sunrise}
-					sunset = {loc.sunset}
+					sunrise = {loc.sys.sunrise}
+					sunset = {loc.sys.sunset}
 					onConvert = {this.props.onConversion}
 					onRemove = {this.props.onRemove}
 
@@ -41,7 +42,7 @@ class WeatherList extends React.PureComponent{
       		));
 
 		return(
-			<div className='weather-list'>
+			<div>
 				{weatherComponents}
 			</div>	
 		)

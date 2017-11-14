@@ -4,7 +4,6 @@ import 'assets/css/dashboardStyle.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 
-
 class WeatherDashboard extends Component {
 
 
@@ -20,15 +19,12 @@ class WeatherDashboard extends Component {
 		let long = this.state.long ||  -9.056790;
 
 		this.getWeatherLocation(lat, long);
-
-
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
 
 		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
 			this.getWeatherLocation(this.state.lat, this.state.long);
-		 
 		}
 
 	}
@@ -56,10 +52,12 @@ class WeatherDashboard extends Component {
 
 					return this.setState({ locations: this.state.locations.concat(data), lat: null, long: null });//  res.data;
 				})
-				.catch(function (error) {
-				console.log('Error [getWeatherLocation()]', error);
+				.catch((err) => {
+				console.log('Error [getWeatherLocation()]', err);
 			});
 	}
+
+ 
 
 	convertDateTime = (timestamp) => {
 		let d = new Date(timestamp*1000);
@@ -154,11 +152,13 @@ class WeatherDashboard extends Component {
 		    			onAddNewLocation = {this.addNewLocation} 
 		    		/>
 		    	</div>
-	    		<WeatherList 
-	    			locations = {this.state.locations}
-	    			onConversion = {this.conversion}
-	    			onRemove = {this.removeLocation}
-	    		/>
+		    	<div>
+		    		<WeatherList 
+		    			locations = {this.state.locations}
+		    			onConversion = {this.conversion}
+		    			onRemove = {this.removeLocation}
+		    		/>
+		    	</div>
 	    	</div>
   	    ) 
 	}

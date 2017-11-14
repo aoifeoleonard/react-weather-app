@@ -1,11 +1,19 @@
-var express = require('express'),
+const express = require('express'),
 	request = require('request'),
 	cors = require('cors'),
-	path = require('path');
+	path = require('path'),
+	fs = require('fs'),
+	bodyParser = require('body-parser');
 
-var app = express(); // create new instance
+const app = express(); // create new instance
 
-var  port = process.env.PORT || 3001; // declare port
+const  port = process.env.PORT || 3001; // declare port
+
+const LOCAL_DATA = path.join(__dirname, 'localdata.json');
+
+
+app.use('*', cors({ origin: 'http://localhost:3000' }));
+
 
 
 // route handler
@@ -15,7 +23,7 @@ app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/client/src/index.js'));
 });
 
-	app.get('/location/:cityId', function(req, res){
+	app.get('/location/:cityId', (req, res) => {
 	
 		const baseUrl = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=';
 		let cityId = req.params.cityId;
@@ -25,7 +33,7 @@ app.get('/', function(req, res){
 		request(url).pipe(res);
 	});
 
-	app.get('/weather/:lat/:long', function(req, res){
+	app.get('/weather/:lat/:long', (req, res) => {
 
 		const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?';
 		let latitude = req.params.lat; 
@@ -34,15 +42,14 @@ app.get('/', function(req, res){
 		
 		const url = baseUrl + 'lat=' + latitude + '&lon=' + longitude + APIToken;
 
-		request(url).pipe(res);
+ 		request(url).pipe(res);
 	});
-
-
-app.use('*', cors({ origin: 'http://localhost:3000' }));
-
 
 
 app.listen(port, function(){
 	console.log('running on port: ' + port);
 });
+
+
+// JSON.stringify(value, replacer (function to alter stringify), space (whitespace))
 
