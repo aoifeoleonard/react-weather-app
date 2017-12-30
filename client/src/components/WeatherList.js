@@ -14,10 +14,11 @@ class WeatherList extends React.PureComponent{
 
 
 	render() {
-
+{/*}
 		this.props.locations.sort((a,b) => 
 			a.name > b.name ? 1 : a.name < b.name ? -1 : 0
 		)
+*/}
 
 	
 		const weatherComponents = this.props.locations.map((loc) => (

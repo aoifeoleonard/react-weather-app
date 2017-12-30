@@ -46,10 +46,10 @@ class AddLocationForm extends Component {
       <div className="location-form">
         <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autoFocus />
         <div className="add-cancel">
-          <button onClick={this.handleAddNewLocation}>
+          <button className="add-loc-button" onClick={this.handleAddNewLocation}>
             <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
           </button>
-          <button onClick={this.handleCancel}>
+          <button className="rem-loc-button" onClick={this.handleCancel}>
             <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
           </button>
         </div>
