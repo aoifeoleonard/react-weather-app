@@ -4,6 +4,7 @@
   display: inline-block;
   width: 30px;
   height: 17px;
+  margin-top: 3px;
 }
 
 /* Hide default HTML checkbox */
@@ -61,7 +62,7 @@ input:checked + .slider:before {
   margin: 0 3px;
 }
 
-.remove-button {
+/*.remove-button {
 	color: red;
 	font: 1.75em 'Helvetica';
 
@@ -72,4 +73,4 @@ input:checked + .slider:before {
 	color: red;
 	font: 2em 'Helvetica';
 
-}
+}*/

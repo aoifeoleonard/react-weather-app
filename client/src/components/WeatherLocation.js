@@ -27,7 +27,7 @@ class WeatherLocation extends Component {
       this.setState({ degree: (this.state.degree === 'C') ? 'F' : 'C' })
     }
 
-    handleRemove = () => {
+handleRemove = () => {
       this.props.onRemove(this.props.city)
     }
 
@@ -36,49 +36,49 @@ class WeatherLocation extends Component {
     return (
       <div className="location-container">
 
-        <div className="col">
-          <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.state.degree}</span></div>
-          <div className="item"><span className="location-name">{this.props.city}</span></div>
-        </div>
-        
-        <div className="col">
-          <div className="item"><span className="weather-image"><img src={this.props.icon} alt="Weather icon" /></span></div>
-          <div className="item"><span className="weather-description">{this.props.description}</span></div>
-        </div>
-        
-        <div className="col">
-          <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.state.degree}</span></div>
-          <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.state.degree}</span></div>
-        </div>
-        
-        <div className="col">
-          <div className="item-list"><i className="fa fa-superpowers" aria-hidden="true"></i><span className="wind-speed">Windspeed {this.props.windSpeed}</span></div>
-          <div className="item-list"><i className="fa fa-long-arrow-right" aria-hidden="true"></i><span className="wind-direction">Humididty {this.props.humidity}</span></div>
-          <div className="item-list"><i className="fa fa-sun-o" aria-hidden="true"></i><span className="sunrise">{this.props.sunrise}</span></div>
-          <div className="item-list"><i className="fa fa-moon-o" aria-hidden="true"></i><span className="sunset">{this.props.sunset}</span></div>
+        <div className="top-bar">
+          
+          <div className="toggle-button top-item">
+              <span className="degree">C</span>
+                <label className="switch">
+                  <input type="checkbox" onChange={this.handleConvert}></input>
+                <span className="slider round"></span>
+              </label>
+                <span className="degree">F</span>
+            </div>
+
+          <button className="remove" onClick={this.handleRemove}>
+            <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+          </button>
+
         </div>
 
-        <div className="col">
-         {/* 
-            <div className='convert-button'>
-           //   <button onClick={this.handleConvert}>Convert</button>
-           // </div>
-          */}
-         
-         <div className="toggle-button">
-            <span className="degree">C</span>
-            <label className="switch">
-              <input type="checkbox" onChange={this.handleConvert}></input>
-              <span className="slider round"></span>
-            </label>
-            <span className="degree">F</span>
-          </div>
-         
-         <div className="remove-button">
-           <span className="remove" onClick={this.handleRemove}>x</span>
-         </div>
+        <div className="location-inner">
         
+            <div className="col">
+              <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.state.degree}</span></div>
+              <div className="location-name">{this.props.city}</div>
+            </div>
+            
+            <div className="col">
+              <div className="weather-image"><img className="weather-image" src={this.props.icon} alt="Weather icon" /></div>
+              <div className="weather-description">{this.props.description}</div>
+            </div>
+            
+            <div className="col">
+              <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.state.degree}</span></div>
+              <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.state.degree}</span></div>
+            </div>
+            
+            <div className="col misc hidden">
+              <div className="wind-speed">Windspeed {this.props.windSpeed}</div>
+              <div className="wind-direction">Humididty {this.props.humidity}</div>
+              <div className="sunrise"><i className="fa fa-sun-o" aria-hidden="true"></i>{this.props.sunrise}</div>
+              <div className="sunset"><i className="fa fa-moon-o" aria-hidden="true"></i>{this.props.sunset}</div>
+            </div>
+
         </div>
+
       </div>
     );
   }

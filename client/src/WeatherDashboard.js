@@ -146,20 +146,22 @@ class WeatherDashboard extends Component {
   // original rendering
   render() {
 	    return (
-	    	<div className='container'>
-	    		<div className="toggle-location">
-		    		<ToggleAddLocation
-		    			onAddNewLocation = {this.addNewLocation} 
-		    		/>
-		    	</div>
-		    	<div>
-		    		<WeatherList 
-		    			locations = {this.state.locations}
-		    			onConversion = {this.conversion}
-		    			onRemove = {this.removeLocation}
-		    		/>
-		    	</div>
-	    	</div>
+		    <div className="container">
+		    	
+			   	<div className="container-item">
+			   		<WeatherList 
+			   			locations = {this.state.locations}
+			   			onConversion = {this.conversion}
+			   			onRemove = {this.removeLocation}
+			   		/>
+			   	</div>
+
+			   	<div className="toggle-location">
+			   		<ToggleAddLocation
+			   			onAddNewLocation = {this.addNewLocation} 
+			   		/>
+			   	</div>
+		    </div>
   	    ) 
 	}
 
