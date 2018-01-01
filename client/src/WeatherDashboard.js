@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import 'assets/css/dashboardStyle.css';
+import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 
@@ -36,10 +36,7 @@ class WeatherDashboard extends Component {
 					let data = res.data;
 
 					// retrieve icon for weather
-					let iconCode = data.weather[0].icon;
-					let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-					// create icon object on location object
-					data.icon = iconUrl;
+					data.icon = data.weather[0].id;
 
 					// format time stamp to hh:mm:ss
 					data.sys.sunrise = this.convertDateTime(data.sys.sunrise);
@@ -147,8 +144,7 @@ class WeatherDashboard extends Component {
   render() {
 	    return (
 		    <div className="container">
-		    	
-			   	<div className="container-item">
+		       	<div className="container-item">
 			   		<WeatherList 
 			   			locations = {this.state.locations}
 			   			onConversion = {this.conversion}
@@ -156,7 +152,7 @@ class WeatherDashboard extends Component {
 			   		/>
 			   	</div>
 
-			   	<div className="toggle-location">
+			   	<div className="container-item">
 			   		<ToggleAddLocation
 			   			onAddNewLocation = {this.addNewLocation} 
 			   		/>

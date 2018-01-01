@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'assets/css/weatherLocationStyle.css';
+import 'assets/css/weatherLocation.css';
 import 'assets/css/toggle.css';
+import 'assets/css/weather-icons.css';
 
 class WeatherLocation extends Component {
 
@@ -36,45 +37,52 @@ handleRemove = () => {
     return (
       <div className="location-container">
 
-        <div className="top-bar">
-          
-          <div className="toggle-button top-item">
-              <span className="degree">C</span>
-                <label className="switch">
-                  <input type="checkbox" onChange={this.handleConvert}></input>
-                <span className="slider round"></span>
-              </label>
-                <span className="degree">F</span>
+        <div>
+            <div>
+               <div className="location-name top-item">{this.props.city}</div>
             </div>
 
-          <button className="remove" onClick={this.handleRemove}>
-            <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
-          </button>
+            <button className="remove top-item" onClick={this.handleRemove}>
+              <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+            </button>
+            
+            <div className="toggle-button toggle top-item">
+                <span className="degree">C</span>
+                  <label className="switch">
+                    <input type="checkbox" onChange={this.handleConvert}></input><span className="slider round"></span>
+                  </label>
+                  <span className="degree">F</span>
+              </div>
 
         </div>
 
         <div className="location-inner">
         
             <div className="col">
-              <div className="item"><span className="temp-main">{this.props.temp}</span><span className="degree">&#176;{this.state.degree}</span></div>
-              <div className="location-name">{this.props.city}</div>
+              <span className="temp-main">{this.props.temp}</span><span className="temp-degree degree">{this.state.degree}</span>
             </div>
             
             <div className="col">
-              <div className="weather-image"><img className="weather-image" src={this.props.icon} alt="Weather icon" /></div>
+              <div className="weather-image"><i className={"wi wi-owm-" + this.props.icon}></i></div>
               <div className="weather-description">{this.props.description}</div>
             </div>
             
             <div className="col">
-              <div className="item"><span className="temp-sub">{this.props.temp_max}</span><span className="degree">&#176;{this.state.degree}</span></div>
-              <div className="item"><span className="temp-sub">{this.props.temp_min}</span><span className="degree">&#176;{this.state.degree}</span></div>
+              <div className="temp-sub">
+                <span className="temp">{this.props.temp_max}</span><span className="temp-degree degree">{this.state.degree}</span>
+              </div>
+              <div className="temp-sub">
+                 <span className="temp">{this.props.temp_min}</span><span className="temp-degree degree">{this.state.degree}</span>
+              </div>
             </div>
             
-            <div className="col misc hidden">
-              <div className="wind-speed">Windspeed {this.props.windSpeed}</div>
-              <div className="wind-direction">Humididty {this.props.humidity}</div>
-              <div className="sunrise"><i className="fa fa-sun-o" aria-hidden="true"></i>{this.props.sunrise}</div>
-              <div className="sunset"><i className="fa fa-moon-o" aria-hidden="true"></i>{this.props.sunset}</div>
+            <div className="col">
+            <ul>
+              <li className="wind-speed"><i className="wi wi-strong-wind"></i>{this.props.windSpeed} m/s</li>
+              <li className="wind-direction"><i className="wi wi-humidity"></i>{this.props.humidity} %</li>
+              <li className="sunrise"><i className="wi wi-sunrise"></i>{this.props.sunrise}</li>
+              <li className="sunset"><i className="wi wi-moonrise"></i>{this.props.sunset}</li>
+            </ul>
             </div>
 
         </div>
