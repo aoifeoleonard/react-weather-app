@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'assets/css/addLocationFormStyle.css';
+import 'assets/css/addLocationForm.css';
 
 class AddLocationForm extends Component {
 
