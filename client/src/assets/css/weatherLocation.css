@@ -1,0 +1,120 @@
+/* Location */
+.location {
+  position: relative;
+  margin: 1.75em auto;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+}
+
+/* Content */
+.content {
+  position: relative;
+  margin: 0 auto;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 0.8em;
+}
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.content div {
+  display: block;
+}
+
+/* Icon */
+.content .icon {
+  float: right;
+  margin-top: 50px;
+  width: 49%;
+  text-align: center;
+}
+.content .icon i {
+  height: 100%;
+  width: 100%;
+  font-size: 6.5em;
+}
+
+/* Settings */
+.content .settings {
+  position: absolute;
+  right: 20px;
+}
+
+/* Data */
+.content .data {
+  float: left;
+  margin: 5% 0;
+  width: 50%;
+}
+.content .data div {
+  text-align: center;
+}
+.content .data h3 {
+  margin: 0px 50px 0px 20px;
+}
+.content .data .temp-main {
+  margin-left: 60px;
+  font-size: 4.3em;
+}
+.content .data .temp-max-min {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1.3em;
+}
+
+/* Information */
+.content .information {
+  clear: both;
+  text-align: center;
+  font-size: .8em;
+  margin-bottom: 25px;
+}
+
+.content .information  {
+  margin-right:10px;
+}
+
+.content .information span {
+  margin-right: 50px;
+}
+
+
+
+/* expland collapse toggle */
+.expand-collapse {
+  position: absolute;
+  font-size: .8em;
+  transition: transform 1500ms ease;
+}
+
+.expand-collapse:hover {
+    transform: rotate( -180deg );            
+    transition: transform 1500ms ease;
+}
+
+.current-weather {
+  top: 5px;
+  left: 15px;
+}
+
+.five-day-forecast {
+  bottom: 5px;
+  left: 15px;
+}
+
+/*.current-weather .five-day-forecast {
+
+}*/
+
+/* General */
+.temp::after {
+  content: "\00b0";
+}
+
+.content .remove {
+  color: #fff;
+  cursor: pointer;
+}
