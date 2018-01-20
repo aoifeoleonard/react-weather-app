@@ -35,59 +35,64 @@ handleRemove = () => {
     
   render() {
     return (
-      <div className="location-container">
-
-        <div>
-            <div>
-               <div className="location-name top-item">{this.props.city}</div>
+      <div className="location">
+        <aside>
+          <div className="content">
+            
+            <div className="expand-collapse current-weather">
+              <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            </div>
+            
+            <div className="icon">
+              <i className={"wi wi-owm-" + this.props.icon}></i>
             </div>
 
-            <button className="remove top-item" onClick={this.handleRemove}>
-              <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
-            </button>
-            
-            <div className="toggle-button toggle top-item">
-                <span className="degree">C</span>
+            <div className="settings">
+              
+              <span className="toggle-button toggle top-item">
+                <span className="temp">C</span>
                   <label className="switch">
                     <input type="checkbox" onChange={this.handleConvert}></input><span className="slider round"></span>
                   </label>
-                  <span className="degree">F</span>
+                  <span className="temp">F</span>
+              </span>
+
+              <button className="remove top-item" onClick={this.handleRemove}>
+                <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+              </button>
+
+            </div>
+
+            <div className="data">
+              
+              <h3 className="city">{this.props.city}</h3>
+              
+              <div className="temp-main"><span className="temp">{this.props.temp}</span>{this.state.degree}</div>
+              
+              <div className="temp-max-min">
+                <span className="temp">{this.props.temp_min}</span> / <span className="temp">{this.props.temp_max}</span>
               </div>
-
-        </div>
-
-        <div className="location-inner">
-        
-            <div className="col">
-              <span className="temp-main">{this.props.temp}</span><span className="temp-degree degree">{this.state.degree}</span>
+              
+              <div className="description">{this.props.description}</div>
+            
             </div>
             
-            <div className="col">
-              <div className="weather-image"><i className={"wi wi-owm-" + this.props.icon}></i></div>
-              <div className="weather-description">{this.props.description}</div>
+            <div className="information">
+              <span><i className="wi wi-humidity"></i>{this.props.humidity} %</span>
+              <span><i className="wi wi-strong-wind"></i>{this.props.windSpeed} m/s</span>
+              <span><i className="wi wi-sunrise"></i>{this.props.sunrise}</span>
+              <span><i className="wi wi-moonrise"></i>{this.props.sunset}</span>
             </div>
-            
-            <div className="col">
-              <div className="temp-sub">
-                <span className="temp">{this.props.temp_max}</span><span className="temp-degree degree">{this.state.degree}</span>
-              </div>
-              <div className="temp-sub">
-                 <span className="temp">{this.props.temp_min}</span><span className="temp-degree degree">{this.state.degree}</span>
-              </div>
-            </div>
-            
-            <div className="col">
-            <ul>
-              <li className="wind-speed"><i className="wi wi-strong-wind"></i>{this.props.windSpeed} m/s</li>
-              <li className="wind-direction"><i className="wi wi-humidity"></i>{this.props.humidity} %</li>
-              <li className="sunrise"><i className="wi wi-sunrise"></i>{this.props.sunrise}</li>
-              <li className="sunset"><i className="wi wi-moonrise"></i>{this.props.sunset}</li>
-            </ul>
+          
+            <div className="expand-collapse five-day-forecast">
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
 
-        </div>
-
+          </div>
+        </aside>
       </div>
+
+      
     );
   }
 }

@@ -1,112 +1,120 @@
-
-i {
-	margin-right: 5%;
+/* Location */
+.location {
+  position: relative;
+  margin: 1.75em auto;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
 }
 
-.location-container {
-	position: relative;
-	display: inline-block;
-	width: 80%;
-	margin: auto;
-  	background-color: rgb(56, 201, 121);
-  	border-radius: 20px;
-  	color: rgba(236, 240, 241,1.0);
+/* Content */
+.content {
+  position: relative;
+  margin: 0 auto;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 0.8em;
+}
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.content div {
+  display: block;
+}
+
+/* Icon */
+.content .icon {
+  float: right;
+  margin-top: 50px;
+  width: 49%;
+  text-align: center;
+}
+.content .icon i {
+  height: 100%;
+  width: 100%;
+  font-size: 6.5em;
+}
+
+/* Settings */
+.content .settings {
+  position: absolute;
+  right: 20px;
+}
+
+/* Data */
+.content .data {
+  float: left;
+  margin: 5% 0;
+  width: 50%;
+}
+.content .data div {
+  text-align: center;
+}
+.content .data h3 {
+  margin: 0px 50px 0px 20px;
+}
+.content .data .temp-main {
+  margin-left: 60px;
+  font-size: 4.3em;
+}
+.content .data .temp-max-min {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1.3em;
+}
+
+/* Information */
+.content .information {
+  clear: both;
+  text-align: center;
+  font-size: .8em;
+  margin-bottom: 25px;
+}
+
+.content .information  {
+  margin-right:10px;
+}
+
+.content .information span {
+  margin-right: 50px;
 }
 
 
-.top-item {
-	margin: 10px 10px 20px 10px;
+
+/* expland collapse toggle */
+.expand-collapse {
+  position: absolute;
+  font-size: .8em;
+  transition: transform 1500ms ease;
 }
 
-
-.location-name {
-	float: left;
-	font-size: 4vw;
-  	text-transform: uppercase;
+.expand-collapse:hover {
+    transform: rotate( -180deg );            
+    transition: transform 1500ms ease;
 }
 
-.remove {
-	float: right;
-	color: blue;
-	cursor: pointer;
+.current-weather {
+  top: 5px;
+  left: 15px;
 }
 
-.toggle {
-	float: right;
+.five-day-forecast {
+  bottom: 5px;
+  left: 15px;
 }
 
-.location-inner {
-	position: relative;
-	clear: left;
-  	margin-bottom: 20px;
-}
+/*.current-weather .five-day-forecast {
 
-
-/*.col {
-  	float: left;
-}
-
-.col ul {
-	margin: 0;
-	padding: 0;
-}
-
-.col ul li {
-	list-style: none;
 }*/
 
-.temp-degree {
-	vertical-align: top;
+/* General */
+.temp::after {
+  content: "\00b0";
 }
 
-/*.temp-degree::before {
-	vertical-align: top;
-	content: "\00b0";
-}*/
-
-/* Specific items */
-.temp-main {
-	margin-bottom: 10px;
-	font-size: 12vw;
-}
-
-.degree {
-	display: inline-block;
-	font-size: 1.25em;
-	font-weight: 300;
-	margin: 0 5px 0 5px;
-}
-
-.degree::before {
-	vertical-align: top;
-	content: "\00b0";
-}
-
-.temp-sub {
-	display: block;
-}
-
-.temp {
-	font-size: 6vw;
-}
-
-.weather-image {
-
-}
-
-.weather-image i{
-	height: 100%;
-	width: 100%;
-  	font-size: 10vw;
-}
-
-.weather-description {
-	text-align: center;
-	text-transform: capitalize;
-	margin: 10px 0 0 0;
-}
-
-
-@media (max-width: 500px) {
-	
+.content .remove {
+  color: #fff;
+  cursor: pointer;
 }

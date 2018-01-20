@@ -1,48 +1,71 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
-html{
-	position: relative;
-	height: 100%;
+/* * {
+  border: .5px solid grey;  
+} */
+
+/* All */
+
+html {
+  background: linear-gradient(to bottom left, #336699 45%, #333399 100%) no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
 }
+
 
 body {
-	margin: 0;
-	padding:0;
-
-	font-size: 100%;
-	height: 100%;
-
-
-	font-family: Varela Round, Tahoma, sans-serif;
-	color: rgb(255,250,250);
-	text-align: center;
-
-	/*background-color: rgb(42, 156, 255);*/
-	background: linear-gradient(-90deg, #80c1ff, #99ceff);
-
+  margin: 0 0;
+  padding: 0;
+  font-family: Varela Round;
+  font-size: 32px;
+  color: #fff;
+  /*background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2015/04/colortheory.jpg");*/
 }
 
-#main {
-	padding: 20px 10px;
+#page {
+  margin: 0 auto;
+  width: 90%;
 }
-
-header {
-	width: 80%;
-	margin: auto;
-	text-align: center;
-}
-
 h1 {
-	text-shadow: 3px 3px 0px rgb(0,0,0);
-	font-size: 3em;
+  margin: 0 0 1.5em 0;
+  font-size: 1.8em;
+  font-weight: 500;
+}
+h2 {
+  margin: 0 0 1.3em 0;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+h3 {
+  margin: 0 0 1em 0;
+  font-size: 1.3em;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
-.to-do {
-	text-shadow: 1px 1px 0px rgb(0,0,0);
+p {
+  margin: 0 0 1em 0;
+  font-size: .5em;
 }
 
+/* Header */
+header h1 {
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+/* General */
 /* reset style for all buttons */
 button {
-	border: none;
-	background-color: rgba(0, 0, 0, 0);
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+i {
+  margin-right: 1%;
 }
