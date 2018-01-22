@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 import Convert from 'util/convertUtil';
+import Weather from 'services/weatherService';
+import Location from 'services/locationService';
 
 class WeatherDashboard extends Component {
-
 
 	state = {
 		locations: [],
@@ -31,54 +33,34 @@ class WeatherDashboard extends Component {
 	}
 
 	getWeatherLocation = (lat, long) => {
-		axios.get('/weather/' + lat + '/' + long)
-				.then((res) => {
+		Weather.getWeatherLocation(lat, long)
+			.then(
+				(data) => {
+					this.setState({ 
+						locations: this.state.locations.concat(data), 
+						lat: null, 
+						long: null 
+					});
+				},
+				(err) => {
+					console.log('Error [getWeatherLocation()]', err);
+				});
 
-					let data = res.data;
-
-					// retrieve icon for weather
-					data.icon = data.weather[0].id;
-
-					// format time stamp to hh:mm:ss
-					data.sys.sunrise = this.convertDateTime(data.sys.sunrise);
-					data.sys.sunset = this.convertDateTime(data.sys.sunset);
-
-					// convert init temp to celcius
-					data.main.temp = this.initTempConversion(res.data.main.temp);
-					data.main.temp_min =this.initTempConversion(res.data.main.temp_min);
-					data.main.temp_max = this.initTempConversion(res.data.main.temp_max);
-
-					return this.setState({ locations: this.state.locations.concat(data), lat: null, long: null });//  res.data;
-				})
-				.catch((err) => {
-				console.log('Error [getWeatherLocation()]', err);
-			});
-	}
-
- 
-
-	convertDateTime = (timestamp) => {
-		return Convert.convertDateTime(timestamp);
-	}
-
-	initTempConversion = (temp) => {
-		return Convert.initTempConversion(temp);
 	}
 
 
 	addNewLocation = (id) => {
-		console.log('new location id', id)
-		axios.get('/location/' + id )
-			.then(res => {
-				const data = res.data.result;
-				const latInit = data.geometry.location.lat;
-				const longInit = data.geometry.location.lng; 
-
-				const lat = parseFloat(latInit.toFixed(6));
-				const long = parseFloat(longInit.toFixed(6));
-
-			this.setState({ lat, long });
-		});
+		Location.addLocation(id)
+			.then(
+				(location) => {
+					this.setState({ 
+						lat: location.lat, 
+						long: location.long });
+				},
+				(err) => {
+					console.log('Error [getWeatherLocation()]', err);
+				});
+		
 	}
 
 
@@ -113,6 +95,7 @@ class WeatherDashboard extends Component {
 			   			onAddNewLocation = {this.addNewLocation} 
 			   		/>
 			   	</div>
+			   	
 		    </div>
   	    ) 
 	}

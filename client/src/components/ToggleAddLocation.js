@@ -7,7 +7,7 @@ import AddLocationForm from './AddLocationForm';
 class ToggleAddLocation extends Component {
 
   static propTypes = {
-    onAddNewLocation: PropTypes.func.required
+    onAddNewLocation: PropTypes.func.isRequired
   }
 
   state = {

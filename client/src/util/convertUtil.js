@@ -5,6 +5,7 @@ convertDateTime (timestamp) {
 		let t = d.toTimeString().split(' ')[0];
 		return t;
 	},
+	
 // convert Kelvin to Celcius init conversion
 initTempConversion (temp) {
 		return Math.round(temp) -270;
@@ -56,11 +57,6 @@ convertTemperatures (temps, degree, city, state) {
 		})
 
 		return temperatureArray;
-		// this.setState({
-		// 	locations: temperatureArray
-		// })
-			
-		// console.log('set state', temperatureArray)
 	}
 
 }

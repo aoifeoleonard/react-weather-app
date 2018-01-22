@@ -5,7 +5,7 @@ import 'assets/css/addLocationForm.css';
 class AddLocationForm extends Component {
 
   static propTypes = {
-      onNewLocation: PropTypes.func,
+      onNewLocation: PropTypes.func.required,
       onCancel: PropTypes.func
     };
 
