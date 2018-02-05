@@ -33,6 +33,18 @@ app.get('/', function(req, res){
 		request(url).pipe(res);
 	});
 
+	app.get('/timezone/:lat/:long', (req, res) => {
+	
+		const baseUrl = 'https://maps.googleapis.com/maps/api/timezone/json?location=';
+		let latitude = req.params.lat; 
+		let longitude = req.params.long;
+		let timestamp = '&timestamp=' + Math.floor(Date.now()/1000);
+		const APIToken = '&key=AIzaSyDZ8VUu7JnpR6_a-R9mxnl6l8nJMGUzSIs';
+		const url = baseUrl + latitude + ',' + longitude + timestamp + APIToken;
+
+		request(url).pipe(res);
+	});
+
 	app.get('/weather/:lat/:long', (req, res) => {
 
 		const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?';
@@ -50,6 +62,9 @@ app.listen(port, function(){
 	console.log('running on port: ' + port);
 });
 
+
+
+// timezone api key AIzaSyDZ8VUu7JnpR6_a-R9mxnl6l8nJMGUzSIs
 
 // JSON.stringify(value, replacer (function to alter stringify), space (whitespace))
 

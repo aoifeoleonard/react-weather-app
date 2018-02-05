@@ -40,7 +40,7 @@ handleRemove = () => {
           <div className="content">
             
             <div className="expand-collapse current-weather">
-              <i class="fa fa-chevron-up" aria-hidden="true"></i>
+              <i className="fa fa-chevron-up" aria-hidden="true"></i>
             </div>
             
             <div className="icon">
@@ -85,7 +85,7 @@ handleRemove = () => {
             </div>
           
             <div className="expand-collapse five-day-forecast">
-              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              <i className="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
 
           </div>

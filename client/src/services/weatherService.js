@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Convert from 'util/convertUtil';
-import Format from 'util/formatter'
+import Format from 'util/formatUtil';
+import Local from 'services/localizationService';
 
 let weatherService = {
 
