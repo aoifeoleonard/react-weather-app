@@ -82,7 +82,17 @@ class WeatherDashboard extends Component {
   // original rendering
   render() {
 	    return (
-	    	<div>
+	    	<div>	
+	    		<div className="container-item">
+			   		
+			   		<p>Press the "+" button to input a city to add to your weather location list.</p>
+			   		
+			   		<ToggleAddLocation
+			   		 	
+			   			onAddNewLocation = {this.addNewLocation} 
+			   		/>
+
+			   	</div>
 			   	
 				   	<WeatherList 
 				   		locations = {this.state.locations}
@@ -90,11 +100,7 @@ class WeatherDashboard extends Component {
 				   		onRemove = {this.removeLocation}
 				   	/>
 			   	
-			   	<div className="container-item">
-			   		<ToggleAddLocation
-			   			onAddNewLocation = {this.addNewLocation} 
-			   		/>
-			   	</div>
+
 			   	
 		    </div>
   	    ) 

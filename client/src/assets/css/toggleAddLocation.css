@@ -1,4 +1,7 @@
 .toggle-location {
+	position: absolute;
+	top: 0;
+	right: 0;
 	border: 1px darkgrey;
 	border-radius: 3px;
 	border-width: 3px;

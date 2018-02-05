@@ -29,7 +29,7 @@ getWeatherLocation (lat, long, fnSuccess) {
 				});
 				// .catch((err) => {
 				// console.log('Error [getWeatherLocation()]', err);
-				//});
+				// });
 	}
 
 

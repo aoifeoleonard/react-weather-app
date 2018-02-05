@@ -33,8 +33,15 @@ class AddLocationForm extends Component {
 
   handleAddNewLocation = () => {
 
-      this.props.onNewLocation(this.state.location);
-      this.handleCancel();
+      if(!!this.state.location){
+        this.props.onNewLocation(this.state.location);
+        this.handleCancel();
+      } else {
+        window.alert("Please select a location from the list");
+        document.getElementById('add-location-input').focus();
+      }
+
+      
   }
 
   handleCancel = () => {

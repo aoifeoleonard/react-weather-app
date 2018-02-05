@@ -5,6 +5,13 @@
 .container-item {
 	position: relative;
 	display: block;
-	margin: auto;
+	width: 70%;
+	margin: 0 auto;
 }
+
+.container-item p {
+	width: 65%;
+}
+
+
 
