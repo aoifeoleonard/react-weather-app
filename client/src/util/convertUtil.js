@@ -1,15 +1,11 @@
-let utils = {
 
-convertDateTime (timestamp) {
-		let d = new Date(timestamp*1000);
-		let t = d.toTimeString().split(' ')[0];
-		return t;
-	},
+
+let utils = {
 	
 // convert Kelvin to Celcius init conversion
 initTempConversion (temp) {
-		return Math.round(temp) -270;
-	},
+	return Math.round(temp) -270;
+},
 
 
 convertTemperatures (temps, degree, city, state) {

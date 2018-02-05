@@ -5,6 +5,7 @@ import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 import Convert from 'util/convertUtil';
+import Format from 'util/formatter'
 import Weather from 'services/weatherService';
 import Location from 'services/locationService';
 
