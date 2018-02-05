@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'assets/css/addLocationFormStyle.css';
+import 'assets/css/addLocationForm.css';
 
 class AddLocationForm extends Component {
 
   static propTypes = {
-      onNewLocation: PropTypes.func,
+      onNewLocation: PropTypes.func.required,
       onCancel: PropTypes.func
     };
 
@@ -33,8 +33,15 @@ class AddLocationForm extends Component {
 
   handleAddNewLocation = () => {
 
-      this.props.onNewLocation(this.state.location);
-      this.handleCancel();
+      if(!!this.state.location){
+        this.props.onNewLocation(this.state.location);
+        this.handleCancel();
+      } else {
+        window.alert("Please select a location from the list");
+        document.getElementById('add-location-input').focus();
+      }
+
+      
   }
 
   handleCancel = () => {

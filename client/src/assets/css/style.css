@@ -51,9 +51,10 @@ p {
 }
 
 /* Header */
-header h1 {
-  margin: 20px 0;
-  background: rgba(255, 255, 255, 0.4);
+header {
+  margin: 20px auto;
+  width: 70%;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   text-align: center;
 }

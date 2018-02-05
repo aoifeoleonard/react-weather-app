@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
-import 'assets/css/weatherListStyle.css';
+//import 'assets/css/weatherListStyle.css';
 
 //Since this is a list it's better for performance to use PureComponent,
 //this means react only does a reconciliation if state or props changed
