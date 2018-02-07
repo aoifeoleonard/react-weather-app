@@ -7,12 +7,15 @@ getTimeLocalization (lat, long) {
 	return axios.get('/timezone/' + lat + '/' + long)
 			.then(
 			(res) => {
-				return res.data.rawOffset;
+				let utcOffset = res.data.rawOffset;
+				let dstOffset = res.data.dstOffset;
+				return utcOffset + dstOffset;
 			},
 			(err) => {
 				console.log('Error [getTimeLocatlization()]', err);
 			});
-	}
+	},
+
 }
 
 export default localizationService;

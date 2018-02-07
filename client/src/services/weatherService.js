@@ -1,23 +1,23 @@
 import axios from 'axios';
 import Convert from 'util/convertUtil';
 import Format from 'util/formatUtil';
-import Local from 'services/localizationService';
+// import Local from 'services/localizationService';
 
 let weatherService = {
 
-getWeatherLocation (lat, long, fnSuccess) {
+getWeatherLocation (lat, long, offset) {
 	return axios.get('/weather/' + lat + '/' + long)
 				.then(
 				(res) => {
 
 					let data = res.data;
 
-					// retrieve icon for weather
+					//retrieve icon for weather
 					data.icon = data.weather[0].id;
 
-					// format time stamp to hh:mm:ss
-					data.sys.sunrise = Format.formatDateTime(data.sys.sunrise);
-					data.sys.sunset = Format.formatDateTime(data.sys.sunset);
+					//format time stamp to hh:mm:ss
+					data.sys.sunrise = Format.formatDateTime(data.sys.sunrise, offset);
+					data.sys.sunset = Format.formatDateTime(data.sys.sunset, offset);
 
 					// convert init temp to celcius
 					data.main.temp = Convert.initTempConversion(res.data.main.temp);

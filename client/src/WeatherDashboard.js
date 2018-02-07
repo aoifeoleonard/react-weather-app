@@ -5,7 +5,8 @@ import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
 import Convert from 'util/convertUtil';
-//import Format from 'util/formatUtil';
+import Format from 'util/formatUtil';
+import Local from 'services/localizationService';
 import Weather from 'services/weatherService';
 import Location from 'services/locationService';
 
@@ -22,31 +23,39 @@ class WeatherDashboard extends Component {
 		let lat = this.state.lat || 53.270668;
 		let long = this.state.long ||  -9.056790;
 
-		this.getWeatherLocation(lat, long);
+		Local.getTimeLocalization (lat, long)
+			.then((offset) => {
+				this.getWeatherLocation(lat, long, offset);
+			})
+		
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
 
 		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
-			this.getWeatherLocation(this.state.lat, this.state.long);
-		}
+			Local.getTimeLocalization (this.state.lat, this.state.long)
+				.then((offset) => {
+					this.getWeatherLocation(this.state.lat, this.state.long, offset);
+				})
+			}
 
 	}
 
-	getWeatherLocation = (lat, long) => {
-		Weather.getWeatherLocation(lat, long)
+	getWeatherLocation = (lat, long, offset) => {
+		Weather.getWeatherLocation(lat, long, offset)
 			.then(
 				(data) => {
+
 					this.setState({ 
-						locations: this.state.locations.concat(data), 
-						lat: null, 
-						long: null 
-					});
+								locations: this.state.locations.concat(data), 
+								lat: null, 
+								long: null 
+							});
 				},
 				(err) => {
 					console.log('Error [getWeatherLocation()]', err);
-				});
-
+				})
+			
 	}
 
 

@@ -4,7 +4,7 @@ let locationService = {
 
 
 addLocation (id) {
-	return axios.get('/location/' + id )
+	return axios.get('/location/' + id)
 			.then(
 			(res) => {
 				const data = res.data.result;
