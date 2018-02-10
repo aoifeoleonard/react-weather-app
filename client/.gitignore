@@ -19,3 +19,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# sonarqube
+.scannerwork/.sonar_lock
+client/.scannerwork/report-task.txt
+client/.scannerwork/.sonar_lock
+.scannerwork/report-task.txt
