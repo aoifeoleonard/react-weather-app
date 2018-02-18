@@ -4,9 +4,10 @@ import axios from 'axios';
 import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
-import Convert from 'util/convertUtil';
-import Weather from 'services/weatherService';
-import Location from 'services/locationService';
+import { convertTemperatures } from 'util/convertUtil';
+import { getTimeLocalization } from 'services/localizationService';
+import { getWeatherDetails } from 'services/weatherService';
+import { addLocation } from 'services/locationService';
 
 class WeatherDashboard extends Component {
 
@@ -17,40 +18,50 @@ class WeatherDashboard extends Component {
 	};
 		
 
-	componentDidMount = () => {
-		let lat = this.state.lat || 53.270668;
-		let long = this.state.long ||  -9.056790;
+	componentDidMount() {
+		const lat = this.state.lat || 53.270668;
+		const long = this.state.long ||  -9.056790;
 
-		this.getWeatherLocation(lat, long);
+		getTimeLocalization (lat, long)
+			.then((offset) => {
+				this.getWeatherLocation(lat, long, offset);
+			})
+		
 	}
 
-	componentDidUpdate = (prevProps, prevState) => {
+	componentDidUpdate (prevProps, prevState) {
+		const { lat, long } = this.state;
+		const { lat: prevLat, long: prevLong } = prevState;
 
-		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
-			this.getWeatherLocation(this.state.lat, this.state.long);
-		}
+		if (lat && !prevLat && long && !prevLong) {
+			getTimeLocalization (lat, long)
+				.then((offset) => {
+					this.getWeatherLocation(lat, long, offset);
+				})
+			}
 
 	}
 
-	getWeatherLocation = (lat, long) => {
-		Weather.getWeatherLocation(lat, long)
+	getWeatherLocation = (lat, long, offset) => {
+		getWeatherDetails(lat, long, offset)
 			.then(
 				(data) => {
+
 					this.setState({ 
-						locations: this.state.locations.concat(data), 
-						lat: null, 
-						long: null 
-					});
+								locations: this.state.locations.concat(data), 
+								lat: null, 
+								long: null 
+							});
 				},
 				(err) => {
 					console.log('Error [getWeatherLocation()]', err);
-				});
-
+				})
+			
 	}
 
 
-	addNewLocation = (id) => {
-		Location.addLocation(id)
+	addNewLocation = id => {
+		addLocation(id)
 			.then(
 				(location) => {
 					this.setState({ 
@@ -63,16 +74,14 @@ class WeatherDashboard extends Component {
 		
 	}
 
-
-	removeLocation = (city) => {
+	removeLocation = city => {
 		this.setState({
 			locations: this.state.locations.filter( loc => loc.name !== city )
 		})
 	}
 
 	convertTemperatures = (temps, degree, city) => {	
-		const temperatureArray = Convert.convertTemperatures(temps, degree, city, this.state);
-
+		const temperatureArray = convertTemperatures(temps, degree, city, this.state)
 		this.setState({
 			locations: temperatureArray
 		})
@@ -88,8 +97,7 @@ class WeatherDashboard extends Component {
 			   		<p>Press the "+" button to input a city to add to your weather location list.</p>
 			   		
 			   		<ToggleAddLocation
-			   		 	
-			   			onAddNewLocation = {this.addNewLocation} 
+			   		 	onAddNewLocation = {this.addNewLocation} 
 			   		/>
 
 			   	</div>

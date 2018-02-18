@@ -1,9 +1,14 @@
 .toggle-location {
 	position: absolute;
-	top: 0;
+	top: -10px;
 	right: 0;
 	border: 1px darkgrey;
 	border-radius: 3px;
 	border-width: 3px;
 	margin: auto;
+}
+
+.toggle-location button {
+	color: white;
+	cursor: pointer;
 }

@@ -20,33 +20,30 @@ class WeatherList extends React.PureComponent{
 		)
 */}
 
-	
-		const weatherComponents = this.props.locations.map((loc) => (
-
-
+	return (
+		<div>
+			{this.props.locations.map((loc) => (
 				<WeatherLocation
-					id = {loc.id}
-					city = {loc.name}
-					temp = {loc.main.temp}
-					temp_min = {loc.main.temp_min}
-					temp_max = {loc.main.temp_max}
-					icon = {loc.icon}
-					description = {loc.weather[0].description}
-					windSpeed = {loc.wind.speed}
-					humidity = {loc.main.humidity}
-					sunrise = {loc.sys.sunrise}
-					sunset = {loc.sys.sunset}
-					onConvert = {this.props.onConversion}
-					onRemove = {this.props.onRemove}
+						id = {loc.id}
+						key = {loc.id}
+						city = {loc.name}
+						temp = {loc.main.temp}
+						temp_min = {loc.main.temp_min}
+						temp_max = {loc.main.temp_max}
+						icon = {loc.icon}
+						description = {loc.weather[0].description}
+						windSpeed = {loc.wind.speed}
+						humidity = {loc.main.humidity}
+						sunrise = {loc.sys.sunrise}
+						sunset = {loc.sys.sunset}
+						onConvert = {this.props.onConversion}
+						onRemove = {this.props.onRemove}
 
-      			 />
-      		));
-
-		return(
-			<div>
-				{weatherComponents}
-			</div>	
+	      			 />
+	      		))}
+			</div>
 		)
+
 	}
 }
 

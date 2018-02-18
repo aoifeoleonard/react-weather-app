@@ -10,6 +10,14 @@ img{
 	/*justify-content: center;*/
 }
 
+.location-form input {
+	width: 250px;
+}
+
+.location-form button {
+	font-weight: normal;
+}
+
 .add-loc-button {
 	/*background-color: rgb(56, 201, 121);*/
 }

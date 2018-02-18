@@ -9,19 +9,13 @@ class AddLocationForm extends Component {
       onCancel: PropTypes.func
     };
 
-    state = {
-      location: ''
-    };
+    // state = {
+    //   location: ''
+    // };
 
-  componentDidMount = () => {
-
-     this.setState({
-        location: ''
-      });
-
-     let inputNode = document.getElementById('add-location-input');
-     let autoComplete = new window.google.maps.places.Autocomplete(inputNode);
-
+  componentDidMount () {
+    //let inputNode = document.getElementById('add-location-input');
+    let autoComplete = new window.google.maps.places.Autocomplete(this.inputNode);
 
      autoComplete.addListener('place_changed', () => {
         let place = autoComplete.getPlace();
@@ -51,7 +45,7 @@ class AddLocationForm extends Component {
   render() {
     return(
       <div className="location-form">
-        <input type='text' id="add-location-input" className="search-location" placeholder="Please enter location" autoFocus />
+        <input type='text' id="add-location-input" ref={(input) => this.inputNode = input} className="search-location" placeholder="Please enter location" autoFocus />
         <div className="add-cancel">
           <button className="add-loc-button" onClick={this.handleAddNewLocation}>
             <i className="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
