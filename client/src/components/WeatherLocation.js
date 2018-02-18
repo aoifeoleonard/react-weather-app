@@ -66,7 +66,7 @@ const {
 
             <div className="settings">
               
-              <span className="toggle-button toggle top-item">
+              <span className="toggle-button toggle">
                 <span className="temp">C</span>
                   <label className="switch">
                     <input type="checkbox" onChange={this.handleConvert}></input><span className="slider round"></span>
@@ -74,7 +74,7 @@ const {
                   <span className="temp">F</span>
               </span>
 
-              <button className="remove top-item" onClick={this.handleRemove}>
+              <button className="remove" onClick={this.handleRemove}>
                 <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
               </button>
 
