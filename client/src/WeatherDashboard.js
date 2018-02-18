@@ -74,7 +74,6 @@ class WeatherDashboard extends Component {
 		
 	}
 
-
 	removeLocation = city => {
 		this.setState({
 			locations: this.state.locations.filter( loc => loc.name !== city )
@@ -82,8 +81,7 @@ class WeatherDashboard extends Component {
 	}
 
 	convertTemperatures = (temps, degree, city) => {	
-		const temperatureArray = convertTemperatures(temps, degree, city, this.state);
-
+		const temperatureArray = convertTemperatures(temps, degree, city, this.state)
 		this.setState({
 			locations: temperatureArray
 		})

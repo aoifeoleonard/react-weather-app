@@ -4,8 +4,6 @@ export const initTempConversion = (temp) => {
 }
 
 export const convertTemperatures = (temps, degree, city, state) => {
-	
-
 		let convertTempCalc;
 		let updatedTempData = [];
 		let updatedDegree;
@@ -24,7 +22,7 @@ export const convertTemperatures = (temps, degree, city, state) => {
 		})
 
 		const temperatureArray = state.locations.map(loc => {
-		
+
 			if(loc.name === city){
 				
 				let convertedTempObject = Object.assign({}, loc.main, {
@@ -40,13 +38,8 @@ export const convertTemperatures = (temps, degree, city, state) => {
 
 			} else {
 				return loc;
-			}
-
-
-			
+			}			
 		})
-
 		return temperatureArray;
 }
-
 

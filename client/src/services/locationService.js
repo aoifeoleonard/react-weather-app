@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const addLocation = (id) => {
 	return axios.get('/location/' + id)
 			.then(res => {
@@ -17,3 +18,4 @@ export const addLocation = (id) => {
 				console.log('Error [getWeatherLocation()]', err);
 			});
 }
+
