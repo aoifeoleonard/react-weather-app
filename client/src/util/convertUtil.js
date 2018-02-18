@@ -1,13 +1,9 @@
 
-
-let utils = {
-	
-// convert Kelvin to Celcius init conversion
-initTempConversion (temp) {
+export const initTempConversion = (temp) => {
 	return Math.round(temp) -270;
-},
+}
 
-convertTemperatures (temps, degree, city, state) {
+export const convertTemperatures = (temps, degree, city, state) => {
 	
 
 		let convertTempCalc;
@@ -51,8 +47,6 @@ convertTemperatures (temps, degree, city, state) {
 		})
 
 		return temperatureArray;
-	}
-
 }
 
-export default utils;
+

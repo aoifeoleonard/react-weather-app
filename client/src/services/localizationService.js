@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-let localizationService = {
-
-
-getTimeLocalization (lat, long) {
+export const getTimeLocalization = (lat, long) => {
 	return axios.get('/timezone/' + lat + '/' + long)
 			.then(res => {
 				let utcOffset = res.data.rawOffset;
@@ -13,8 +10,4 @@ getTimeLocalization (lat, long) {
 			.catch(err => {
 				console.log('Error [getTimeLocatlization()]', err);
 			});
-	},
-
 }
-
-export default localizationService;

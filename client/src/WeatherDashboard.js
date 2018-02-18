@@ -4,11 +4,10 @@ import axios from 'axios';
 import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';
-import Convert from 'util/convertUtil';
-import Format from 'util/formatUtil';
-import Local from 'services/localizationService';
-import Weather from 'services/weatherService';
-import Location from 'services/locationService';
+import { convertTemperatures } from 'util/convertUtil';
+import { getTimeLocalization } from 'services/localizationService';
+import { getWeatherDetails } from 'services/weatherService';
+import { addLocation } from 'services/locationService';
 
 class WeatherDashboard extends Component {
 
@@ -23,7 +22,7 @@ class WeatherDashboard extends Component {
 		const lat = this.state.lat || 53.270668;
 		const long = this.state.long ||  -9.056790;
 
-		Local.getTimeLocalization (lat, long)
+		getTimeLocalization (lat, long)
 			.then((offset) => {
 				this.getWeatherLocation(lat, long, offset);
 			})
@@ -35,7 +34,7 @@ class WeatherDashboard extends Component {
 		const { lat: prevLat, long: prevLong } = prevState;
 
 		if (lat && !prevLat && long && !prevLong) {
-			Local.getTimeLocalization (lat, long)
+			getTimeLocalization (lat, long)
 				.then((offset) => {
 					this.getWeatherLocation(lat, long, offset);
 				})
@@ -44,7 +43,7 @@ class WeatherDashboard extends Component {
 	}
 
 	getWeatherLocation = (lat, long, offset) => {
-		Weather.getWeatherLocation(lat, long, offset)
+		getWeatherDetails(lat, long, offset)
 			.then(
 				(data) => {
 
@@ -62,7 +61,7 @@ class WeatherDashboard extends Component {
 
 
 	addNewLocation = id => {
-		Location.addLocation(id)
+		addLocation(id)
 			.then(
 				(location) => {
 					this.setState({ 
@@ -83,7 +82,7 @@ class WeatherDashboard extends Component {
 	}
 
 	convertTemperatures = (temps, degree, city) => {	
-		const temperatureArray = Convert.convertTemperatures(temps, degree, city, this.state);
+		const temperatureArray = convertTemperatures(temps, degree, city, this.state);
 
 		this.setState({
 			locations: temperatureArray
