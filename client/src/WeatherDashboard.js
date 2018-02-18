@@ -19,9 +19,9 @@ class WeatherDashboard extends Component {
 	};
 		
 
-	componentDidMount = () => {
-		let lat = this.state.lat || 53.270668;
-		let long = this.state.long ||  -9.056790;
+	componentDidMount() {
+		const lat = this.state.lat || 53.270668;
+		const long = this.state.long ||  -9.056790;
 
 		Local.getTimeLocalization (lat, long)
 			.then((offset) => {
@@ -30,12 +30,14 @@ class WeatherDashboard extends Component {
 		
 	}
 
-	componentDidUpdate = (prevProps, prevState) => {
+	componentDidUpdate (prevProps, prevState) {
+		const { lat, long } = this.state;
+		const { lat: prevLat, long: prevLong } = prevState;
 
-		if (this.state.lat && !prevState.lat && this.state.long && !prevState.long) {
-			Local.getTimeLocalization (this.state.lat, this.state.long)
+		if (lat && !prevLat && long && !prevLong) {
+			Local.getTimeLocalization (lat, long)
 				.then((offset) => {
-					this.getWeatherLocation(this.state.lat, this.state.long, offset);
+					this.getWeatherLocation(lat, long, offset);
 				})
 			}
 

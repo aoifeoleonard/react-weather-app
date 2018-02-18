@@ -14,12 +14,12 @@ class WeatherLocation extends Component {
     }
 
     state = {
-      degree: ''
+      degree: 'C'
     }
 
-    componentDidMount = () => {
-      this.setState({ degree: 'C' })
-    }
+    // componentDidMount = () => {
+    //   this.setState({ degree: 'C' })
+    // }
 
 
     handleConvert = () => {
@@ -28,15 +28,30 @@ class WeatherLocation extends Component {
       this.setState({ degree: (this.state.degree === 'C') ? 'F' : 'C' })
     }
 
-handleRemove = () => {
+    handleRemove = () => {
       this.props.onRemove(this.props.city)
     }
 
     
-  render() {
+render() {
+
+const {
+  icon,
+  city,
+  degree,
+  temp,
+  temp_max,
+  temp_min,
+  description,
+  humidity,
+  windSpeed,
+  sunrise,
+  sunset
+} = this.props;
+
     return (
       <div className="location">
-        <aside>
+        <main>
           <div className="content">
             
             {/*
@@ -46,7 +61,7 @@ handleRemove = () => {
             */}
 
             <div className="icon">
-              <i className={"wi wi-owm-" + this.props.icon}></i>
+              <i className={"wi wi-owm-" + icon}></i>
             </div>
 
             <div className="settings">
@@ -67,23 +82,23 @@ handleRemove = () => {
 
             <div className="data">
               
-              <h3 className="city">{this.props.city}</h3>
+              <h3 className="city">{city}</h3>
               
-              <div className="temp-main"><span className="temp">{this.props.temp}</span>{this.state.degree}</div>
+              <div className="temp-main"><span className="temp">{this.props.temp}</span>{degree}</div>
               
               <div className="temp-max-min">
-                <span className="temp">{this.props.temp_min}</span> / <span className="temp">{this.props.temp_max}</span>
+                <span className="temp">{temp_min}</span> / <span className="temp">{temp_max}</span>
               </div>
               
-              <div className="description">{this.props.description}</div>
+              <div className="description">{description}</div>
             
             </div>
             
             <div className="information">
-              <span><i className="wi wi-humidity"></i>{this.props.humidity} %</span>
-              <span><i className="wi wi-strong-wind"></i>{this.props.windSpeed} m/s</span>
-              <span><i className="wi wi-sunrise"></i>{this.props.sunrise}</span>
-              <span><i className="wi wi-moonrise"></i>{this.props.sunset}</span>
+              <span><i className="wi wi-humidity"></i>{humidity} %</span>
+              <span><i className="wi wi-strong-wind"></i>{windSpeed} m/s</span>
+              <span><i className="wi wi-sunrise"></i>{sunrise}</span>
+              <span><i className="wi wi-moonrise"></i>{sunset}</span>
             </div>
           
           {/*
@@ -92,7 +107,7 @@ handleRemove = () => {
             </div>
           */}
           </div>
-        </aside>
+        </main>
       </div>
 
       
