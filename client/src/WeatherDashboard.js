@@ -98,8 +98,7 @@ class WeatherDashboard extends Component {
 			   		<p>Press the "+" button to input a city to add to your weather location list.</p>
 			   		
 			   		<ToggleAddLocation
-			   		 	
-			   			onAddNewLocation = {this.addNewLocation} 
+			   		 	onAddNewLocation = {this.addNewLocation} 
 			   		/>
 
 			   	</div>
