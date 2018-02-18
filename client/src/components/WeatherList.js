@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
-//import 'assets/css/weatherListStyle.css';
-
-//Since this is a list it's better for performance to use PureComponent,
-//this means react only does a reconciliation if state or props changed
 
 class WeatherList extends React.PureComponent{
 
@@ -12,18 +8,11 @@ class WeatherList extends React.PureComponent{
     	locations: PropTypes.array
   	}
 
-
 	render() {
-{/*}
-		this.props.locations.sort((a,b) => 
-			a.name > b.name ? 1 : a.name < b.name ? -1 : 0
-		)
-*/}
-
-	return (
-		<div>
-			{this.props.locations.map((loc) => (
-				<WeatherLocation
+		return (
+			<div>
+				{this.props.locations.map((loc) => (
+					<WeatherLocation
 						id = {loc.id}
 						key = {loc.id}
 						city = {loc.name}
@@ -38,8 +27,7 @@ class WeatherList extends React.PureComponent{
 						sunset = {loc.sys.sunset}
 						onConvert = {this.props.onConversion}
 						onRemove = {this.props.onRemove}
-
-	      			 />
+	      			/>
 	      		))}
 			</div>
 		)

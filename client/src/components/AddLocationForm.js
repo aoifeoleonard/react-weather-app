@@ -7,26 +7,18 @@ class AddLocationForm extends Component {
   static propTypes = {
       onNewLocation: PropTypes.func.required,
       onCancel: PropTypes.func
-    };
-
-    // state = {
-    //   location: ''
-    // };
+    }
 
   componentDidMount () {
-    //let inputNode = document.getElementById('add-location-input');
     let autoComplete = new window.google.maps.places.Autocomplete(this.inputNode);
-
-     autoComplete.addListener('place_changed', () => {
+    autoComplete.addListener('place_changed', () => {
         let place = autoComplete.getPlace();
         let placeId = place.place_id;
         this.setState({ location: placeId })
-
       })
   }
 
   handleAddNewLocation = () => {
-
       if(!!this.state.location){
         this.props.onNewLocation(this.state.location);
         this.handleCancel();
@@ -34,8 +26,6 @@ class AddLocationForm extends Component {
         window.alert("Please select a location from the list");
         document.getElementById('add-location-input').focus();
       }
-
-      
   }
 
   handleCancel = () => {
@@ -55,7 +45,6 @@ class AddLocationForm extends Component {
           </button>
         </div>
       </div>
-
     )
   }
 }

@@ -1,14 +1,9 @@
 
-export const initTempConversion = (temp) => {
-	return Math.round(temp) -270;
-}
+export const initTempConversion = temp => Math.round(temp) - 270;
 
 export const convertTemperatures = (temps, degree, city, state) => {
-	
-
-		let convertTempCalc;
+		let convertTempCalc, updatedDegree;
 		let updatedTempData = [];
-		let updatedDegree;
 
 		temps.forEach(temp => {
 
@@ -24,9 +19,7 @@ export const convertTemperatures = (temps, degree, city, state) => {
 		})
 
 		const temperatureArray = state.locations.map(loc => {
-		
 			if(loc.name === city){
-				
 				let convertedTempObject = Object.assign({}, loc.main, {
 					temp: updatedTempData[0],
 					temp_max: updatedTempData[1],
@@ -41,11 +34,7 @@ export const convertTemperatures = (temps, degree, city, state) => {
 			} else {
 				return loc;
 			}
-
-
-			
 		})
-
 		return temperatureArray;
 }
 
