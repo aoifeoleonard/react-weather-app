@@ -7,16 +7,14 @@ initTempConversion (temp) {
 	return Math.round(temp) -270;
 },
 
-
 convertTemperatures (temps, degree, city, state) {
 	
 
 		let convertTempCalc;
 		let updatedTempData = [];
-		//let convertedLocationObject;
 		let updatedDegree;
 
-		temps.forEach((temp) => {
+		temps.forEach(temp => {
 
 			if(degree === 'C'){
 				convertTempCalc = (9.0/5.0 * temp) + 32;
@@ -29,7 +27,7 @@ convertTemperatures (temps, degree, city, state) {
 			updatedTempData.push(Math.round(convertTempCalc))
 		})
 
-		const temperatureArray = state.locations.map((loc) => {
+		const temperatureArray = state.locations.map(loc => {
 		
 			if(loc.name === city){
 				

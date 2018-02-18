@@ -1,6 +1,6 @@
 .toggle-location {
 	position: absolute;
-	top: 0;
+	top: -10px;
 	right: 0;
 	border: 1px darkgrey;
 	border-radius: 3px;

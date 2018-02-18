@@ -5,13 +5,12 @@ let localizationService = {
 
 getTimeLocalization (lat, long) {
 	return axios.get('/timezone/' + lat + '/' + long)
-			.then(
-			(res) => {
+			.then(res => {
 				let utcOffset = res.data.rawOffset;
 				let dstOffset = res.data.dstOffset;
 				return utcOffset + dstOffset;
-			},
-			(err) => {
+			})
+			.catch(err => {
 				console.log('Error [getTimeLocatlization()]', err);
 			});
 	},

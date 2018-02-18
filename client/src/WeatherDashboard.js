@@ -59,7 +59,7 @@ class WeatherDashboard extends Component {
 	}
 
 
-	addNewLocation = (id) => {
+	addNewLocation = id => {
 		Location.addLocation(id)
 			.then(
 				(location) => {
@@ -74,7 +74,7 @@ class WeatherDashboard extends Component {
 	}
 
 
-	removeLocation = (city) => {
+	removeLocation = city => {
 		this.setState({
 			locations: this.state.locations.filter( loc => loc.name !== city )
 		})

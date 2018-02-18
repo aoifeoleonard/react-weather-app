@@ -39,10 +39,12 @@ handleRemove = () => {
         <aside>
           <div className="content">
             
+            {/*
             <div className="expand-collapse current-weather">
               <i className="fa fa-chevron-up" aria-hidden="true"></i>
             </div>
-            
+            */}
+
             <div className="icon">
               <i className={"wi wi-owm-" + this.props.icon}></i>
             </div>
@@ -84,10 +86,11 @@ handleRemove = () => {
               <span><i className="wi wi-moonrise"></i>{this.props.sunset}</span>
             </div>
           
+          {/*
             <div className="expand-collapse five-day-forecast">
               <i className="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
-
+          */}
           </div>
         </aside>
       </div>

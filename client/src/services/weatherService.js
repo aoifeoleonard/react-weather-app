@@ -7,8 +7,7 @@ let weatherService = {
 
 getWeatherLocation (lat, long, offset) {
 	return axios.get('/weather/' + lat + '/' + long)
-				.then(
-				(res) => {
+				.then(res => {
 
 					let data = res.data;
 
@@ -25,13 +24,10 @@ getWeatherLocation (lat, long, offset) {
 					data.main.temp_max = Convert.initTempConversion(res.data.main.temp_max);
 
 					return data;
-				},
-				(err) => {
+				})
+				.catch(err => {
 					console.log('Error [getWeatherLocation()]', err);
 				});
-				// .catch((err) => {
-				// console.log('Error [getWeatherLocation()]', err);
-				// });
 	}
 
 
