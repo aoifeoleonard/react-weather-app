@@ -17,3 +17,4 @@ export const addLocation = (id) => {
 				err => console.log('Error [getWeatherLocation()]', err)
 			)
 }
+

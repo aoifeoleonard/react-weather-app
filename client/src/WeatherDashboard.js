@@ -66,7 +66,6 @@ class WeatherDashboard extends Component {
 				})
 	}
 
-
 	removeLocation = city => {
 		this.setState({
 			locations: this.state.locations.filter( loc => loc.name !== city )
@@ -86,7 +85,6 @@ class WeatherDashboard extends Component {
 	    		<div className="container-item">
 			   		<p>Press the "+" button to input a city to add to your weather location list.</p>
 			   		<ToggleAddLocation onAddNewLocation = {this.addNewLocation} />
-
 			   	</div>
 			   	<WeatherList 
 				   	locations = {this.state.locations}
