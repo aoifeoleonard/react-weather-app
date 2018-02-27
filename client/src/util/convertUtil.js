@@ -1,4 +1,5 @@
 
+
 export const initTempConversion = temp => Math.round(temp) - 270;
 
 export const convertTemperatures = (temps, degree, city, state) => {
@@ -37,5 +38,4 @@ export const convertTemperatures = (temps, degree, city, state) => {
 		})
 		return temperatureArray;
 }
-
 

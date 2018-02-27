@@ -40,10 +40,10 @@ class WeatherDashboard extends Component {
 			.then(
 				data => {
 					this.setState({ 
-						locations: this.state.locations.concat(data), 
-						lat: null, 
-						long: null 
-					});
+								locations: this.state.locations.concat(data), 
+								lat: null, 
+								long: null 
+							});
 				},
 				err => {
 					console.log('Error [getWeatherLocation()]', err);
