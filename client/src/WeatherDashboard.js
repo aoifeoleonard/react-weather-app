@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import 'assets/css/weatherDashboard.css';
 import WeatherList from 'components/WeatherList';
 import ToggleAddLocation from 'components/ToggleAddLocation';

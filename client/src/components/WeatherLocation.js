@@ -72,7 +72,7 @@ class WeatherLocation extends Component {
 
             <div className="data">
               <h3 className="city">{city}</h3>
-              <div className="temp-main"><span className="temp">{this.props.temp}</span>{degree}</div>
+              <div className="temp-main"><span className="temp">{temp}</span>{degree}</div>
               <div className="temp-max-min">
                 <span className="temp">{temp_min}</span> / <span className="temp">{temp_max}</span>
               </div>
