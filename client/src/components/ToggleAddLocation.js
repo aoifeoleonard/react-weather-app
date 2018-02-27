@@ -12,31 +12,31 @@ class ToggleAddLocation extends Component {
 
   state = {
     addLocationOpen: false
-  };
+  }
 
   handleToggle = () => {
     this.setState(prevState => ({
       addLocationOpen: !prevState.addLocationOpen
     }))
-
-  };
+  }
   
   render() {
-      if(this.state.addLocationOpen){
-        return (
+    if(this.state.addLocationOpen){
+      return (
         <div className="toggle-location">
           <AddLocationForm
-                    onNewLocation={this.props.onAddNewLocation}
-                    onCancel={this.handleToggle} />
+            onNewLocation={this.props.onAddNewLocation}
+            onCancel={this.handleToggle}
+          />
         </div>
         )
-      } else {
-        return (
-          <div className="toggle-location">
-              <button onClick={this.handleToggle}>
-                <i className="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
-              </button>
-          </div>
+    } else {
+      return (
+        <div className="toggle-location">
+          <button onClick={this.handleToggle}>
+            <i className="fa fa-plus-square-o fa-2x fa-button" aria-hidden="true"></i>
+          </button>
+        </div>
       )
     }
   }

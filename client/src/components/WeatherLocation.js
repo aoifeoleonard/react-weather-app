@@ -17,11 +17,6 @@ class WeatherLocation extends Component {
       degree: 'C'
     }
 
-    // componentDidMount = () => {
-    //   this.setState({ degree: 'C' })
-    // }
-
-
     handleConvert = () => {
       let temps = [this.props.temp, this.props.temp_max, this.props.temp_min];
       this.props.onConvert(temps, this.state.degree, this.props.city);
@@ -31,23 +26,21 @@ class WeatherLocation extends Component {
     handleRemove = () => {
       this.props.onRemove(this.props.city)
     }
-
     
-render() {
-
-const {
-  icon,
-  city,
-  degree,
-  temp,
-  temp_max,
-  temp_min,
-  description,
-  humidity,
-  windSpeed,
-  sunrise,
-  sunset
-} = this.props;
+  render() {
+    const {
+      icon,
+      city,
+      degree,
+      temp,
+      temp_max,
+      temp_min,
+      description,
+      humidity,
+      windSpeed,
+      sunrise,
+      sunset
+    } = this.props;
 
     return (
       <div className="location">
@@ -65,7 +58,6 @@ const {
             </div>
 
             <div className="settings">
-              
               <span className="toggle-button toggle">
                 <span className="temp">C</span>
                   <label className="switch">
@@ -73,25 +65,18 @@ const {
                   </label>
                   <span className="temp">F</span>
               </span>
-
               <button className="remove" onClick={this.handleRemove}>
                 <i className="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
               </button>
-
             </div>
 
             <div className="data">
-              
               <h3 className="city">{city}</h3>
-              
-              <div className="temp-main"><span className="temp">{this.props.temp}</span>{degree}</div>
-              
+              <div className="temp-main"><span className="temp">{temp}</span>{degree}</div>
               <div className="temp-max-min">
                 <span className="temp">{temp_min}</span> / <span className="temp">{temp_max}</span>
               </div>
-              
               <div className="description">{description}</div>
-            
             </div>
             
             <div className="information">
